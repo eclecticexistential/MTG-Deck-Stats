@@ -95,7 +95,7 @@ class Hand:
                     self.hand.append(card)
                     break
         except TypeError:
-            print("Dunno yet.")
+            print("Dunno yet. Hand {}, deck {}, cc {}.".format(self.hand, self.deck, self.cc))
 
     def __iter__(self):
         for card in self.hand:

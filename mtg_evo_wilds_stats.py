@@ -1,7 +1,7 @@
 import math
 import random
 from mtgClasses import *
-from mtgSpells import draw, tutor, direct_damage, life_gain, removal
+from mtgSpells import draw, tutor, direct_damage, life_gain, removal, play_creature
 
 
 def dice():
@@ -96,9 +96,11 @@ def hand_check(hand, graveyard):
         if 8 in hand:
             hand.remove(8)
             graveyard.append(8)
+            return hand, graveyard
         if 33 in hand:
             hand.remove(33)
             graveyard.append(33)
+            return hand, graveyard
 
 
 def play_land(mana, deck, hand, field, graveyard):
@@ -145,10 +147,8 @@ def play_land(mana, deck, hand, field, graveyard):
                 hand.remove(3)
                 return deck, hand, field, graveyard, snap_shot
             else:
-                print("here's the snap_shot {}".format(snap_shot))
                 return deck, hand, field, graveyard, snap_shot
         else:
-            print("made it here")
             return deck, hand, field, graveyard, snap_shot
     elif mana == 3:
         if d > e and e < f:
@@ -201,6 +201,7 @@ def play_land(mana, deck, hand, field, graveyard):
                 hand.remove(4)
                 return deck, hand, field, graveyard, snap_shot
             else:
+                print("made it here")
                 return deck, hand, field, graveyard, snap_shot
 
 
@@ -209,70 +210,27 @@ def check_field(hand, field, evo, mana):
     b = field.count(3)
     c = field.count(4)
     available_mana = [a, b, c]
-    if mana == 2:
-        # checks if evo was played to see if legal move can be made using mana on this turn
-        if evo == 1 and a == 1 and b == 1 or a == 3 and b == 3:
-            pass
-        if a >= 3 and b >= 3:
-                if 42 in hand:
-                    hand.remove(42)
-                    field.append(42)
-                    available_mana[0] -= 3
-                    available_mana[1] -= 3
-                    return available_mana
-        if a >= 1 and b >= 1:
-            if 8 in hand:
-                hand.remove(8)
-                field.append(8)
-                available_mana[0] -= 1
-                available_mana[1] -= 1
-                return available_mana
-        else:
-            return available_mana
-    elif mana == 3:
-        if evo == 1 and a == 1 and b == 1 and c == 1 or a == 3 and b == 3 and c == 3:
-            pass
-        if a >= 2 and b >= 2 and c >= 2:
-            if 42 in hand:
-                hand.remove(42)
-                field.append(42)
-                available_mana[0] -= 2
-                available_mana[1] -= 2
-                available_mana[2] -= 2
-                return available_mana
-        if num2s >= 1 and num3s >= 1 and num4s >= 1:
-            if 8 in hand:
-                hand.remove(8)
-                field.append(8)
-                available_mana[0] -= 1
-                available_mana[1] -= 1
-                available_mana[2] -= 1
-                return available_mana
-        else:
-            return available_mana
+    if evo == 1 and a == 1 and b == 1 or a == 3 and b == 3:
+        pass
+    else:
+        return play_creature(hand, field, mana, available_mana)
 
 
 def check_creatures(battlefield):
     damage = 0
     if 8 in battlefield:
         damage += 1
-    elif 42 in battlefield:
+    elif 88 in battlefield:
         damage += 5
     return damage
 
 
 def main_phase(hand, deck, field, graveyard, mana):
     was_evo_played = play_land(mana, deck, hand, field, graveyard)
-    try:
-        snap_shot = was_evo_played[4]
-    except TypeError:
-        print("hello!", was_evo_played)
-    try:
-        if len(was_evo_played) == 6:
-            mana_left = check_field(hand, field, 1, mana)
-            return hand, deck, field, snap_shot, mana_left
-    except TypeError:
-        mana_left = check_field(hand, field, 0, mana)
+    len_evo = len(was_evo_played)
+    snap_shot = was_evo_played[4]
+    if len_evo == 6:
+        mana_left = check_field(hand, field, 1, mana)
         return hand, deck, field, snap_shot, mana_left
     else:
         mana_left = check_field(hand, field, 0, mana)
