@@ -23,9 +23,8 @@ def create_hand(deck, cc):
 
 
 def mulligan(deck, mana, cc):
-    shuffled = random.shuffle(list(deck))
-    smaller_hand = create_hand(shuffled, cc)
-    return check_hand(smaller_hand, mana, shuffled)
+    smaller_hand = create_hand(deck, cc)
+    return check_hand(smaller_hand, mana, deck)
 
 
 def check_hand(hand, mana, deck):
@@ -108,46 +107,42 @@ def play_land(mana, deck, hand, field, graveyard):
     e = field.count(3)
     f = field.count(4)
     snap_shot = [d, e, f]
+    print(snap_shot)
     if mana == 1:
         field.append(2)
         hand.remove(2)
     if mana == 2:
-        if d >= e:
-            if 10 in hand:
-                graveyard.append(10)
-                hand.remove(10)
+        if 10 in hand:
+            graveyard.append(10)
+            hand.remove(10)
+            if d >= e:
                 if 3 in deck:
                     deck.remove(3)
                     field.append(3)
                     return deck, hand, field, graveyard, snap_shot, 1
-            elif 3 in hand:
-                field.append(3)
-                hand.remove(3)
-                return deck, hand, field, graveyard, snap_shot
-            elif 2 in hand:
-                field.append(2)
-                hand.remove(2)
-                return deck, hand, field, graveyard, snap_shot
-            else:
-                return deck, hand, field, graveyard, snap_shot
-        elif e >= d:
-            if 10 in hand:
-                graveyard.append(10)
-                hand.remove(10)
+            elif e >= d:
                 if 2 in deck:
                     deck.remove(2)
                     field.append(2)
                     return deck, hand, field, graveyard, snap_shot, 1
-            elif 2 in hand:
+        if d >= e:
+            if 2 in hand:
                 field.append(2)
                 hand.remove(2)
                 return deck, hand, field, graveyard, snap_shot
-            elif 3 in hand:
+        if e >= d:
+            if 3 in hand:
                 field.append(3)
                 hand.remove(3)
                 return deck, hand, field, graveyard, snap_shot
-            else:
-                return deck, hand, field, graveyard, snap_shot
+        if 2 in hand:
+            field.append(2)
+            hand.remove(2)
+            return deck, hand, field, graveyard, snap_shot
+        if 3 in hand:
+            field.append(3)
+            hand.remove(3)
+            return deck, hand, field, graveyard, snap_shot
         else:
             return deck, hand, field, graveyard, snap_shot
     elif mana == 3:
@@ -211,7 +206,8 @@ def check_field(hand, field, evo, mana):
     c = field.count(4)
     available_mana = [a, b, c]
     if evo == 1 and a == 1 and b == 1 or a == 3 and b == 3:
-        pass
+        available_mana[0] -= 1
+        return play_creature(hand, field, mana, available_mana)
     else:
         return play_creature(hand, field, mana, available_mana)
 
@@ -231,9 +227,11 @@ def main_phase(hand, deck, field, graveyard, mana):
     snap_shot = was_evo_played[4]
     if len_evo == 6:
         mana_left = check_field(hand, field, 1, mana)
+        print("Evo's mana left {}".format(mana_left))
         return hand, deck, field, snap_shot, mana_left
     else:
         mana_left = check_field(hand, field, 0, mana)
+        print("Non evo mana {}".format(mana_left))
         return hand, deck, field, snap_shot, mana_left
 
 
@@ -328,13 +326,15 @@ def play_the_game(player_one, player_two, mana, goes_first):
                 stats = ["P2", p2_turns]
                 return stats
             if p1untapped_mana is not None:
-                hit = take_turn(p1_deck, p1_hand, p1_grave, p1untapped_mana, p2_field, p2_grave, "P2", p1_life, mana)
-                if hit == 3:
-                    p2_life -= 3
-                elif hit == 5:
-                    p1_life += 5
-                elif hit == 2:
-                    p1_life -= 2
+                p1current = p1untapped_mana[0] + p1untapped_mana[1] + p1untapped_mana[2]
+                if p1current > 0:
+                    hit = take_turn(p1_deck, p1_hand, p1_grave, p1untapped_mana, p2_field, p2_grave, "P2", p1_life, mana)
+                    if hit == 3:
+                        p2_life -= 3
+                    elif hit == 5:
+                        p1_life += 5
+                    elif hit == 2:
+                        p1_life -= 2
             health = combat_phase(p1_field, p1_life, p1_turns, p1_deck, p2_field, p2_life, p2_turns, p2_deck)
             if health[0] != "P1" and health[0] != "P2":
                 p1_life = health[0]
@@ -355,13 +355,15 @@ def play_the_game(player_one, player_two, mana, goes_first):
                 stats = ["P1", p1_turns]
                 return stats
             if p2untapped_mana is not None:
-                hit = take_turn(p2_deck, p2_hand, p2_grave, p2untapped_mana, p1_field, p1_grave, "P1", p2_life, mana)
-                if hit == 3:
-                    p1_life -= 3
-                elif hit == 5:
-                    p2_life += 5
-                elif hit == 2:
-                    p2_life -= 2
+                p2current = p2untapped_mana[0] + p2untapped_mana[1] + p2untapped_mana[2]
+                if p2current > 0:
+                    hit = take_turn(p2_deck, p2_hand, p2_grave, p2untapped_mana, p1_field, p1_grave, "P1", p2_life, mana)
+                    if hit == 3:
+                        p1_life -= 3
+                    elif hit == 5:
+                        p2_life += 5
+                    elif hit == 2:
+                        p2_life -= 2
             health = combat_phase(p1_field, p1_life, p1_turns, p1_deck, p2_field, p2_life, p2_turns, p2_deck)
             if health[0] != "P1" and health[0] != "P2":
                 p1_life = health[0]
@@ -461,7 +463,7 @@ def out_of_all_games(cc, mana, evo):
 
 
 out_of_all_games(40, 2, 2)
-out_of_all_games(40, 3, 3)
+# out_of_all_games(40, 3, 3)
 
 
 # magic api starcity,tcg for data sets

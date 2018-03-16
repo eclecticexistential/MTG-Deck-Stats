@@ -120,7 +120,7 @@ def removal(hand, field, p1_graveyard, p2_graveyard, untapped_mana, mana, player
                         p1_graveyard.append(88)
                         p2_graveyard.append(33)
                     print("88 was removed")
-                    return
+                    return untapped_mana
             if mana == 3:
                 if land1 >= 1 and land2 >= 1 or land2 >= 1 and land3 >= 1 or land1 >= 1 and land3 >= 1:
                     field.remove(88)
@@ -141,7 +141,7 @@ def removal(hand, field, p1_graveyard, p2_graveyard, untapped_mana, mana, player
                         p1_graveyard.append(88)
                         p2_graveyard.append(33)
                     print("88 was removed")
-                    return
+                    return untapped_mana
         else:
             pass
     if 13 in hand:
@@ -160,7 +160,7 @@ def removal(hand, field, p1_graveyard, p2_graveyard, untapped_mana, mana, player
                         p1_graveyard.append(8)
                         p2_graveyard.append(13)
                     print("8 was removed")
-                    return
+                    return untapped_mana
             if mana == 3:
                 if land1 >= 1 and land2 >= 1 or land2 >= 1 and land3 >= 1 or land1 >= 1 and land3 >= 1:
                     field.remove(8)
@@ -181,7 +181,7 @@ def removal(hand, field, p1_graveyard, p2_graveyard, untapped_mana, mana, player
                         p1_graveyard.append(8)
                         p2_graveyard.append(13)
                     print("8 was removed")
-                    return
+                    return untapped_mana
 
 
 def play_creature(hand, field, mana, available_mana):
@@ -195,14 +195,14 @@ def play_creature(hand, field, mana, available_mana):
                     field.append(88)
                     available_mana[0] -= 3
                     available_mana[1] -= 3
-                    return hand, field, available_mana
+                    return available_mana
         if a >= 1 and b >= 1:
             if 8 in hand:
                 hand.remove(8)
                 field.append(8)
                 available_mana[0] -= 1
                 available_mana[1] -= 1
-                return hand, field, available_mana
+                return available_mana
         else:
             return available_mana
     elif mana == 3:
