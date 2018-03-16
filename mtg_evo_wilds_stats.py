@@ -107,7 +107,6 @@ def play_land(mana, deck, hand, field, graveyard):
     e = field.count(3)
     f = field.count(4)
     snap_shot = [d, e, f]
-    print(snap_shot)
     if mana == 1:
         field.append(2)
         hand.remove(2)
@@ -227,11 +226,9 @@ def main_phase(hand, deck, field, graveyard, mana):
     snap_shot = was_evo_played[4]
     if len_evo == 6:
         mana_left = check_field(hand, field, 1, mana)
-        print("Evo's mana left {}".format(mana_left))
         return hand, deck, field, snap_shot, mana_left
     else:
         mana_left = check_field(hand, field, 0, mana)
-        print("Non evo mana {}".format(mana_left))
         return hand, deck, field, snap_shot, mana_left
 
 
@@ -372,49 +369,82 @@ def play_the_game(player_one, player_two, mana, goes_first):
             else:
                 return health
             hand_check(p2_hand, p2_grave)
-    # if goes_first == 1:
-    #     while True:
-    #         print()
-    #         print("Start of Round {}.".format(p1_turns + 1))
-    #         print("Evo Field {} Hand {} Graveyard {} Life Total {}".format(p1_field, p1_hand, p1_grave, p1_life))
-    #         print("Non-Evo Field {} Hand {} Graveyard {} Life Total {} ".format(p2_field, p2_hand, p2_grave, p2_life))
-    #         hit = take_turn(p2_ss, p2_deck, p2_hand, p2_field, p2_grave, p1_turns, p1_field, p1_grave, "P1", p2_life, mana)
-    #         if hit == 3:
-    #             p1_life -= 3
-    #         elif hit == 5:
-    #             p2_life += 5
-    #         elif hit == 2:
-    #             p2_life -= 2
-    #         health = combat_phase(p1_field, p1_life, p1_turns, p1_deck, p2_field, p2_life, p2_turns, p2_deck)
-    #         if health[0] != "P1" and health[0] != "P2":
-    #             p1_life = health[0]
-    #             p2_life = health[1]
-    #             p2_turns += 1
-    #         else:
-    #             return health
-    #         hit = take_turn(p1_ss, p1_deck, p1_hand, p1_field, p1_grave, p2_turns, p2_field, p2_grave, "P2", p2_life, mana)
-    #         if hit == 3:
-    #             p2_life -= 3
-    #         elif hit == 5:
-    #             p1_life += 5
-    #         elif hit == 2:
-    #             p1_life -= 2
-    #         health = combat_phase(p1_field, p1_life, p1_turns, p1_deck, p2_field, p2_life, p2_turns, p2_deck)
-    #         if health[0] != "P1" and health[0] != "P2":
-    #             p1_life = health[0]
-    #             p2_life = health[1]
-    #             p1_turns += 1
-    #         else:
-    #             return health
+    if goes_first == 1:
+        while True:
+            print()
+            print("Start of Round {}.".format(p2_turns +1))
+            print("Player1 Field {} Hand {} Graveyard {} Life Total {}".format(p2_field, p2_hand, p2_grave, p2_life))
+            print("Player2 Field {} Hand {} Graveyard {} Life Total {} ".format(p1_field, p1_hand, p1_grave, p1_life))
 
 
-# def status():
-#     p1_dice_roll = dice()
-#     p2_dice_roll = dice()
-#     goes_first = 0
-#     if p1_dice_roll < p2_dice_roll:
-#         goes_first = 1
-#     return goes_first
+            p2new_deck, p2new_hand = draw(p2_deck, p2_hand)
+            if p2new_deck == []:
+                stats = ["P1", p1_turns]
+                return stats
+            p2_hand, p2_deck, p2_field, p2add_to, p2untapped_mana = main_phase(p2new_hand, p2new_deck, p2_field, p2_grave, mana)
+            p2_ss.append(p2add_to)
+            mana_fed = check_snap_shot(p2_ss, p2_field)
+            if mana_fed == 0:
+                stats = ["P1", p1_turns]
+                return stats
+            if p2untapped_mana is not None:
+                p2current = p2untapped_mana[0] + p2untapped_mana[1] + p2untapped_mana[2]
+                if p2current > 0:
+                    hit = take_turn(p2_deck, p2_hand, p2_grave, p2untapped_mana, p1_field, p1_grave, "P1", p2_life, mana)
+                    if hit == 3:
+                        p1_life -= 3
+                    elif hit == 5:
+                        p2_life += 5
+                    elif hit == 2:
+                        p2_life -= 2
+            health = combat_phase(p1_field, p1_life, p1_turns, p1_deck, p2_field, p2_life, p2_turns, p2_deck)
+            if health[0] != "P1" and health[0] != "P2":
+                p1_life = health[0]
+                p2_life = health[1]
+                p2_turns += 1
+            else:
+                return health
+            hand_check(p2_hand, p2_grave)
+
+            p1new_deck, p1new_hand = draw(p1_deck, p1_hand)
+            if p1new_deck == []:
+                stats = ["P2", p2_turns]
+                return stats
+            p1_hand, p1_deck, p1_field, p1add_to, p1untapped_mana = main_phase(p1new_hand, p1new_deck, p1_field,
+                                                                               p1_grave, mana)
+            p1_ss.append(p1add_to)
+            mana_fed = check_snap_shot(p1_ss, p1_field)
+            if mana_fed == 0:
+                stats = ["P2", p2_turns]
+                return stats
+            if p1untapped_mana is not None:
+                p1current = p1untapped_mana[0] + p1untapped_mana[1] + p1untapped_mana[2]
+                if p1current > 0:
+                    hit = take_turn(p1_deck, p1_hand, p1_grave, p1untapped_mana, p2_field, p2_grave, "P2", p1_life,
+                                    mana)
+                    if hit == 3:
+                        p2_life -= 3
+                    elif hit == 5:
+                        p1_life += 5
+                    elif hit == 2:
+                        p1_life -= 2
+            health = combat_phase(p1_field, p1_life, p1_turns, p1_deck, p2_field, p2_life, p2_turns, p2_deck)
+            if health[0] != "P1" and health[0] != "P2":
+                p1_life = health[0]
+                p2_life = health[1]
+                p1_turns += 1
+            else:
+                return health
+            hand_check(p1_hand, p1_grave)
+
+
+def status():
+    p1_dice_roll = dice()
+    p2_dice_roll = dice()
+    goes_first = 0
+    if p1_dice_roll < p2_dice_roll:
+        goes_first = 1
+    return goes_first
 
 
 def out_of_all_games(cc, mana, evo):
@@ -436,8 +466,7 @@ def out_of_all_games(cc, mana, evo):
             evo_draw_steps.append(0)
             games -= 1
         elif player_one and player_two:
-            # goes_first = status()
-            goes_first = 0
+            goes_first = status()
             winner = play_the_game(player_one, player_two, mana, goes_first)
             # appends num of draws into win condition if player won
             if winner[0] == "P1":
