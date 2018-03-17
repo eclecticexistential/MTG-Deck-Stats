@@ -68,6 +68,7 @@ def direct_damage(hand, graveyard, untapped_mana, mana):
                 elif land3 >= 1 and land1 >= 1:
                     untapped_mana[0] -= 1
                     untapped_mana[2] -= 1
+                print("direct damage")
                 return 3
 
 
@@ -184,18 +185,48 @@ def removal(hand, field, p1_graveyard, p2_graveyard, untapped_mana, mana, player
                     return untapped_mana
 
 
+def draw_card(deck, hand, graveyard, mana, available_mana):
+    a = available_mana[0]
+    b = available_mana[1]
+    c = available_mana[2]
+    if mana == 2:
+        if a >= 1 and b >= 1:
+            hand.remove(42)
+            graveyard.append(42)
+            available_mana[0] -= 1
+            available_mana[1] -= 1
+            print("drew card")
+            return draw(deck, hand)
+    elif mana == 3:
+        if a >= 1 and b >= 1 or b >= 1 and c >= 1 or a >= 1 and c >= 1:
+            hand.remove(42)
+            graveyard.append(42)
+            print("drew card")
+            if a >= 1:
+                available_mana[0] -= 1
+                if b >= 1:
+                    available_mana[1] -= 1
+                    return draw(deck, hand)
+                elif c >= 1:
+                    available_mana[2] -= 1
+                    return draw(deck, hand)
+            elif b >= 1 and c >= 1:
+                available_mana[1] -= 1
+                return draw(deck, hand)
+
+
 def play_creature(hand, field, mana, available_mana):
     a = available_mana[0]
     b = available_mana[1]
     c = available_mana[2]
     if mana == 2:
         if a >= 3 and b >= 3:
-                if 88 in hand:
-                    hand.remove(88)
-                    field.append(88)
-                    available_mana[0] -= 3
-                    available_mana[1] -= 3
-                    return available_mana
+            if 88 in hand:
+                hand.remove(88)
+                field.append(88)
+                available_mana[0] -= 3
+                available_mana[1] -= 3
+                return available_mana
         if a >= 1 and b >= 1:
             if 8 in hand:
                 hand.remove(8)
@@ -206,8 +237,6 @@ def play_creature(hand, field, mana, available_mana):
         else:
             return available_mana
     elif mana == 3:
-        if evo == 1 and a == 1 and b == 1 and c == 1 or a == 3 and b == 3 and c == 3:
-            pass
         if a >= 2 and b >= 2 and c >= 2:
             if 88 in hand:
                 hand.remove(88)
