@@ -1,4 +1,4 @@
-import random
+
 from mtgClasses import *
 
 

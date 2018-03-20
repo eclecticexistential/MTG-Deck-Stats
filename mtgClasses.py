@@ -26,7 +26,7 @@ class Mana:
 
 
 class Spells:
-    def __init__(self, removal=4, life_gain=1, tutor=2, draw_cards=1, combat_tricks=4):
+    def __init__(self, removal=2, life_gain=2, tutor=2, draw_cards=2, combat_tricks=4):
         self.total_spells = {33: removal, 9: life_gain, 66: tutor, 42: draw_cards, 13: combat_tricks}
         if removal < 0 or life_gain < 0 or tutor < 0 or draw_cards < 0:
             raise ValueError("You're going to need a positive number of spells.")
