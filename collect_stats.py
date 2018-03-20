@@ -14,8 +14,3 @@ def game_stats(round, player, mana, hand=None, game=None, method=None, winner=No
     if method and winner:
         who_wins_stats[round] = [player, method]
 
-game_stats(1, "P1", 2, [2, 3, 9, 8, 88, 13], 1)
-game_stats(1, "P1", 2, [2, 3, 9, 8, 88, 13], 1)
-game_stats(1, "P1", 2, [2, 3, 9, 8, 88, 13], 1)
-game_stats(1, "P1", 2, [2, 3, 9, 8, 88, 13], 1)
-game_stats(1, "P1", 2, [2, 3, 9, 8, 88, 13], 1)

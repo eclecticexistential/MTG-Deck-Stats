@@ -1,7 +1,9 @@
 from mtg_evo_wilds_stats import *
+from collect_stats import game_stats
+from to_database import get_open_hand_stats
 
 
-def play_the_game(player_one, player_two, mana, goes_first):
+def play_the_game(player_one, player_two, mana, goes_first, game_num):
     p1_deck, p1_hand, p1_field, p1_grave = player_one
     p2_deck, p2_hand, p2_field, p2_grave = player_two
     p1_turns = 0
@@ -10,12 +12,13 @@ def play_the_game(player_one, player_two, mana, goes_first):
     p2_ss = []
     p1_life = 20
     p2_life = 20
+    round_start = 0
 
 # taking turns... goes_first determines who plays first
     if goes_first == 0:
         while True:
             print()
-            print("Start of Round {}.".format(p1_turns +1))
+            print("Start of Round {}.".format(p1_turns + 1))
             print("Player1 Field {} Hand {} Graveyard {} Life Total {}".format(p1_field, p1_hand, p1_grave, p1_life))
             print("Player2 Field {} Hand {} Graveyard {} Life Total {} ".format(p2_field, p2_hand, p2_grave, p2_life))
             try:
@@ -26,6 +29,10 @@ def play_the_game(player_one, player_two, mana, goes_first):
             if p1new_deck == []:
                 stats = ["P2", p2_turns]
                 return stats
+
+            if p1new_hand and round_start == 0:
+                game_stats(round_start, "P1", mana, p1new_hand, game_num)
+                round_start += 1
 
             p1start_num_creatures = p1_field.count(8)
             p1_hand, p1_deck, p1_field, p1add_to, p1untapped_mana = main_phase(p1new_hand, p1new_deck, p1_field, p1_grave, mana)
@@ -57,10 +64,17 @@ def play_the_game(player_one, player_two, mana, goes_first):
             p1_turns += 1
             hand_check(p1_hand, p1_grave)
 
+            ### player two's turn
+
             p2new_deck, p2new_hand = draw(p2_deck, p2_hand)
             if p2new_deck == []:
                 stats = ["P1", p1_turns]
                 return stats
+
+            if p2new_hand and round_start == 1:
+                game_stats(round_start, "P2", mana, p2new_hand, game_num)
+                round_start += 1
+
             p2start_num_creatures = p2_field.count(8)
             p2_hand, p2_deck, p2_field, p2add_to, p2untapped_mana = main_phase(p2new_hand, p2new_deck, p2_field, p2_grave, mana)
             p2now_num_creatures = p1_field.count(8)
@@ -99,6 +113,11 @@ def play_the_game(player_one, player_two, mana, goes_first):
             if p2new_deck == []:
                 stats = ["P1", p1_turns]
                 return stats
+
+            if p2new_hand and round_start == 0:
+                game_stats(round_start, "P2", mana, p2new_hand, game_num)
+                round_start += 1
+
             p2start_num_creatures = p2_field.count(8)
             p2_hand, p2_deck, p2_field, p2add_to, p2untapped_mana = main_phase(p2new_hand, p2new_deck, p2_field, p2_grave, mana)
             p2now_num_creatures = p1_field.count(8)
@@ -136,6 +155,10 @@ def play_the_game(player_one, player_two, mana, goes_first):
             if p1new_deck == []:
                 stats = ["P2", p2_turns]
                 return stats
+
+            if p1new_hand and round_start == 1:
+                game_stats((p1_turns+1), "P1", mana, p1new_hand, game_num)
+                round_start += 1
 
             p1start_num_creatures = p1_field.count(8)
             p1_hand, p1_deck, p1_field, p1add_to, p1untapped_mana = main_phase(p1new_hand, p1new_deck, p1_field, p1_grave,
@@ -199,7 +222,7 @@ def out_of_all_games(cc, mana, evo):
             games -= 1
         elif player_one and player_two:
             goes_first = status()
-            winner = play_the_game(player_one, player_two, mana, goes_first)
+            winner = play_the_game(player_one, player_two, mana, goes_first, games)
             # appends num of draws into win condition if player won
             if winner[0] == "P1":
                 evo_draw_steps.append(winner[1])
@@ -221,6 +244,7 @@ def out_of_all_games(cc, mana, evo):
     print("Ties to Win {}".format(ties))
     print("With Evolving Wilds: {} Cards Drawn Into Win Condition.".format(evo_totes))
     print("Without Evolving Wilds: {} Cards Drawn Into Win Condition.".format(non_evo_totes))
+    get_open_hand_stats()
 
 
 out_of_all_games(40, 2, 2)

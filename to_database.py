@@ -39,5 +39,3 @@ def get_open_hand_stats():
 
     except:
         print("Couldn't Retrieve Data From Database")
-
-get_open_hand_stats()
