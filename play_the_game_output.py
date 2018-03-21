@@ -1,6 +1,6 @@
 from mtg_evo_wilds_stats import *
 from collect_stats import game_stats
-from to_database import get_open_hand_stats
+from to_database import get_open_hand_stats, get_first_blood_stats
 
 
 def play_the_game(player_one, player_two, mana, goes_first, game_num):
@@ -13,14 +13,15 @@ def play_the_game(player_one, player_two, mana, goes_first, game_num):
     p1_life = 20
     p2_life = 20
     round_start = 0
-
+    ticker = 0
+    method = ""
 # taking turns... goes_first determines who plays first
     if goes_first == 0:
         while True:
-            print()
-            print("Start of Round {}.".format(p1_turns + 1))
-            print("Player1 Field {} Hand {} Graveyard {} Life Total {}".format(p1_field, p1_hand, p1_grave, p1_life))
-            print("Player2 Field {} Hand {} Graveyard {} Life Total {} ".format(p2_field, p2_hand, p2_grave, p2_life))
+            # print()
+            # print("Start of Round {}.".format(p1_turns + 1))
+            # print("Player1 Field {} Hand {} Graveyard {} Life Total {}".format(p1_field, p1_hand, p1_grave, p1_life))
+            # print("Player2 Field {} Hand {} Graveyard {} Life Total {} ".format(p2_field, p2_hand, p2_grave, p2_life))
             try:
                 p1new_deck, p1new_hand = draw(p1_deck, p1_hand)
             except TypeError:
@@ -31,7 +32,7 @@ def play_the_game(player_one, player_two, mana, goes_first, game_num):
                 return stats
 
             if p1new_hand and round_start == 0:
-                game_stats(round_start, "P1", mana, p1new_hand, game_num)
+                game_stats(round_start, "P1", mana, game_num, p1new_hand)
                 round_start += 1
 
             p1start_num_creatures = p1_field.count(8)
@@ -50,29 +51,45 @@ def play_the_game(player_one, player_two, mana, goes_first, game_num):
                     hit = take_turn(p1_deck, p1_hand, p1_grave, p1untapped_mana, p2_field, p2_grave, "P2", p1_life, mana)
                     if hit == 3:
                         p2_life -= 3
+                        if ticker == 0:
+                            method = "Lightning Bolt"
+                            ticker += 1
                     elif hit == 5:
                         p1_life += 5
                     elif hit == 2:
                         p1_life -= 2
             if p1no_summoning_sickness > -1:
-                health = combat_phase(p1_field, p1_life, p1_turns, p1_deck, p2_field, p2_life, p2_turns, p2_deck, p1no_summoning_sickness, "P1")
+                health = combat_phase(p1_field, p1_life, p1_turns, p1_deck, p2_field, p2_life, p2_turns, p2_deck,
+                                      p1no_summoning_sickness, "P1")
                 if health[0] != "P1" and health[0] != "P2":
+                    before_p1 = p1_life
+                    before_P2 = p2_life
                     p1_life = health[0]
                     p2_life = health[1]
+                    if before_P2 != p2_life and before_p1 == p1_life and ticker == 0:
+                        method == "Combat Damage"
+                        ticker += 1
                 else:
                     return health
             p1_turns += 1
             hand_check(p1_hand, p1_grave)
 
-            ### player two's turn
+            if p2_life < 20 and ticker == 1:
+                game_stats(p1_turns, "P1", mana, game_num, hand=None, method=method, winner=None, goes_first=goes_first)
+                ticker += 1
 
-            p2new_deck, p2new_hand = draw(p2_deck, p2_hand)
+            ### player two's turn
+            try:
+                p2new_deck, p2new_hand = draw(p2_deck, p2_hand)
+            except TypeError:
+                stats = ["P1", p1_turns]
+                return stats
             if p2new_deck == []:
                 stats = ["P1", p1_turns]
                 return stats
 
             if p2new_hand and round_start == 1:
-                game_stats(round_start, "P2", mana, p2new_hand, game_num)
+                game_stats(round_start, "P2", mana, game_num, p2new_hand)
                 round_start += 1
 
             p2start_num_creatures = p2_field.count(8)
@@ -90,6 +107,9 @@ def play_the_game(player_one, player_two, mana, goes_first, game_num):
                     hit = take_turn(p2_deck, p2_hand, p2_grave, p2untapped_mana, p1_field, p1_grave, "P1", p2_life, mana)
                     if hit == 3:
                         p1_life -= 3
+                        if ticker == 0:
+                            method = "Lightning Bolt"
+                            ticker += 1
                     elif hit == 5:
                         p2_life += 5
                     elif hit == 2:
@@ -97,25 +117,35 @@ def play_the_game(player_one, player_two, mana, goes_first, game_num):
             if p2no_summoning_sickness > -1:
                 health = combat_phase(p1_field, p1_life, p1_turns, p1_deck, p2_field, p2_life, p2_turns, p2_deck, p2no_summoning_sickness, "P2")
                 if health[0] != "P1" and health[0] != "P2":
+                    before_p1 = p1_life
+                    before_P2 = p2_life
                     p1_life = health[0]
                     p2_life = health[1]
+                    if before_p1 != p1_life and before_P2 == p2_life and ticker == 0:
+                        method = "Combat Damage"
+                        ticker += 1
                 else:
                     return health
             p2_turns += 1
             hand_check(p2_hand, p2_grave)
+
+            if p1_life < 20 and ticker == 1:
+                game_stats(p2_turns, "P2", mana, game_num, hand=None, method=method, winner=None, goes_first=goes_first)
+                ticker += 1
+
     if goes_first == 1:
         while True:
-            print()
-            print("Start of Round {}.".format(p2_turns +1))
-            print("Player2 Field {} Hand {} Graveyard {} Life Total {}".format(p2_field, p2_hand, p2_grave, p2_life))
-            print("Player1 Field {} Hand {} Graveyard {} Life Total {} ".format(p1_field, p1_hand, p1_grave, p1_life))
+            # print()
+            # print("Start of Round {}.".format(p2_turns +1))
+            # print("Player2 Field {} Hand {} Graveyard {} Life Total {}".format(p2_field, p2_hand, p2_grave, p2_life))
+            # print("Player1 Field {} Hand {} Graveyard {} Life Total {} ".format(p1_field, p1_hand, p1_grave, p1_life))
             p2new_deck, p2new_hand = draw(p2_deck, p2_hand)
             if p2new_deck == []:
                 stats = ["P1", p1_turns]
                 return stats
 
             if p2new_hand and round_start == 0:
-                game_stats(round_start, "P2", mana, p2new_hand, game_num)
+                game_stats(round_start, "P2", mana, game_num, p2new_hand)
                 round_start += 1
 
             p2start_num_creatures = p2_field.count(8)
@@ -133,6 +163,9 @@ def play_the_game(player_one, player_two, mana, goes_first, game_num):
                     hit = take_turn(p2_deck, p2_hand, p2_grave, p2untapped_mana, p1_field, p1_grave, "P1", p2_life, mana)
                     if hit == 3:
                         p1_life -= 3
+                        if ticker == 0:
+                            method = "Lightning Bolt"
+                            ticker += 1
                     elif hit == 5:
                         p2_life += 5
                     elif hit == 2:
@@ -140,12 +173,21 @@ def play_the_game(player_one, player_two, mana, goes_first, game_num):
             if p2no_summoning_sickness > -1:
                 health = combat_phase(p1_field, p1_life, p1_turns, p1_deck, p2_field, p2_life, p2_turns, p2_deck, p2no_summoning_sickness, "P2")
                 if health[0] != "P1" and health[0] != "P2":
+                    before_p1 = p1_life
+                    before_P2 = p2_life
                     p1_life = health[0]
                     p2_life = health[1]
+                    if before_P2 != p2_life and before_p1 == p1_life and ticker == 0:
+                        method = "Combat Damage"
+                        ticker += 1
                 else:
                     return health
             p2_turns += 1
             hand_check(p2_hand, p2_grave)
+
+            if p1_life < 20 and ticker == 1:
+                game_stats(p2_turns, "P2", mana, game_num, hand=None, method=method, winner=None, goes_first=goes_first)
+                ticker += 1
 
             try:
                 p1new_deck, p1new_hand = draw(p1_deck, p1_hand)
@@ -157,7 +199,7 @@ def play_the_game(player_one, player_two, mana, goes_first, game_num):
                 return stats
 
             if p1new_hand and round_start == 1:
-                game_stats((p1_turns+1), "P1", mana, p1new_hand, game_num)
+                game_stats((p1_turns+1), "P1", mana, game_num, p1new_hand)
                 round_start += 1
 
             p1start_num_creatures = p1_field.count(8)
@@ -177,6 +219,9 @@ def play_the_game(player_one, player_two, mana, goes_first, game_num):
                     hit = take_turn(p1_deck, p1_hand, p1_grave, p1untapped_mana, p2_field, p2_grave, "P2", p1_life, mana)
                     if hit == 3:
                         p2_life -= 3
+                        if ticker == 0:
+                            method = "Lightning Bolt"
+                            ticker += 1
                     elif hit == 5:
                         p1_life += 5
                     elif hit == 2:
@@ -185,12 +230,21 @@ def play_the_game(player_one, player_two, mana, goes_first, game_num):
                 health = combat_phase(p1_field, p1_life, p1_turns, p1_deck, p2_field, p2_life, p2_turns, p2_deck,
                                       p1no_summoning_sickness, "P1")
                 if health[0] != "P1" and health[0] != "P2":
+                    before_p1 = p1_life
+                    before_P2 = p2_life
                     p1_life = health[0]
                     p2_life = health[1]
+                    if before_p1 != p1_life and before_P2 == p2_life and ticker == 0:
+                        method = "Combat Damage"
+                        ticker += 1
                 else:
                     return health
             p1_turns += 1
             hand_check(p1_hand, p1_grave)
+
+            if p2_life < 20 and ticker == 1:
+                game_stats(p1_turns, "P1", mana, game_num, hand=None, method=method, winner=None, goes_first=goes_first)
+                ticker += 1
 
 
 def status():
@@ -245,6 +299,7 @@ def out_of_all_games(cc, mana, evo):
     print("With Evolving Wilds: {} Cards Drawn Into Win Condition.".format(evo_totes))
     print("Without Evolving Wilds: {} Cards Drawn Into Win Condition.".format(non_evo_totes))
     get_open_hand_stats()
+    get_first_blood_stats()
 
 
 out_of_all_games(40, 2, 2)

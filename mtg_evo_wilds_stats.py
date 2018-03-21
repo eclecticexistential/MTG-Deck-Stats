@@ -200,11 +200,11 @@ def combat_phase(p1_field, p1_life_total, p1_turns, p1_deck, p2_field, p2_life_t
     if p1_creatures > p2_creatures:
         damage = (p1_creatures - p2_creatures) + 1
         p2_life_total -= damage
-        print("player 2 took damage")
+        # print("player 2 took damage")
     elif p1_creatures < p2_creatures:
         damage = (p2_creatures - p1_creatures) + 1
         p1_life_total -= damage
-        print("PLAYER 1 took damage")
+        # print("PLAYER 1 took damage")
 
     if p1_life_total <= 0:
         stats = ["P2", p2_turns]
