@@ -53,7 +53,7 @@ def direct_damage(hand, graveyard, untapped_mana, mana):
                 hand.remove(13)
                 untapped_mana[0] -= 1
                 untapped_mana[1] -= 1
-                print("direct damage")
+                # print("direct damage")
                 return 3
         if mana == 3:
             if land1 >= 1 and land2 >= 1 or land2 >= 1 and land3 >= 1 or land1 >= 1 and land3 >= 1:
@@ -68,7 +68,7 @@ def direct_damage(hand, graveyard, untapped_mana, mana):
                 elif land3 >= 1 and land1 >= 1:
                     untapped_mana[0] -= 1
                     untapped_mana[2] -= 1
-                print("direct damage")
+                # print("direct damage")
                 return 3
 
 
@@ -83,7 +83,7 @@ def life_gain(hand, graveyard, untapped_mana, mana):
                 graveyard.append(9)
                 untapped_mana[0] -= 1
                 untapped_mana[1] -= 1
-                print("life gain")
+                # print("life gain")
                 return 5
         if mana == 3:
             if land1 >= 1 and land2 >= 1 or land2 >= 1 and land3 >= 1 or land1 >= 1 and land3 >= 1:
@@ -120,7 +120,7 @@ def removal(hand, field, p1_graveyard, p2_graveyard, untapped_mana, mana, player
                     elif player == "P2":
                         p1_graveyard.append(88)
                         p2_graveyard.append(33)
-                    print("88 was removed")
+                    # print("88 was removed")
                     return untapped_mana
             if mana == 3:
                 if land1 >= 1 and land2 >= 1 or land2 >= 1 and land3 >= 1 or land1 >= 1 and land3 >= 1:
@@ -141,7 +141,7 @@ def removal(hand, field, p1_graveyard, p2_graveyard, untapped_mana, mana, player
                     elif player == "P2":
                         p1_graveyard.append(88)
                         p2_graveyard.append(33)
-                    print("88 was removed")
+                    # print("88 was removed")
                     return untapped_mana
         else:
             pass
@@ -160,7 +160,7 @@ def removal(hand, field, p1_graveyard, p2_graveyard, untapped_mana, mana, player
                     elif player == "P2":
                         p1_graveyard.append(8)
                         p2_graveyard.append(13)
-                    print("8 was removed")
+                    # print("8 was removed")
                     return untapped_mana
             if mana == 3:
                 if land1 >= 1 and land2 >= 1 or land2 >= 1 and land3 >= 1 or land1 >= 1 and land3 >= 1:
@@ -181,7 +181,7 @@ def removal(hand, field, p1_graveyard, p2_graveyard, untapped_mana, mana, player
                     elif player == "P2":
                         p1_graveyard.append(8)
                         p2_graveyard.append(13)
-                    print("8 was removed")
+                    # print("8 was removed")
                     return untapped_mana
 
 
@@ -195,13 +195,13 @@ def draw_card(deck, hand, graveyard, mana, available_mana):
             graveyard.append(42)
             available_mana[0] -= 1
             available_mana[1] -= 1
-            print("drew card")
+            # print("drew card")
             return draw(deck, hand)
     elif mana == 3:
         if a >= 1 and b >= 1 or b >= 1 and c >= 1 or a >= 1 and c >= 1:
             hand.remove(42)
             graveyard.append(42)
-            print("drew card")
+            # print("drew card")
             if a >= 1:
                 available_mana[0] -= 1
                 if b >= 1:

@@ -1,6 +1,6 @@
 from mtg_evo_wilds_stats import *
 from collect_stats import game_stats
-from to_database import get_open_hand_stats, get_first_blood_stats
+from to_database import get_open_hand_stats, get_first_blood_stats, get_who_wins_stats, get_mana_starved_stats
 
 
 def play_the_game(player_one, player_two, mana, goes_first, game_num):
@@ -26,9 +26,13 @@ def play_the_game(player_one, player_two, mana, goes_first, game_num):
                 p1new_deck, p1new_hand = draw(p1_deck, p1_hand)
             except TypeError:
                 stats = ["P2", p2_turns]
+                game_stats(p2_turns, "P2", mana, game_num, hand=None, method="Milled",
+                           winner=True, goes_first=goes_first)
                 return stats
             if p1new_deck == []:
                 stats = ["P2", p2_turns]
+                game_stats(p2_turns, "P2", mana, game_num, hand=None, method="Milled",
+                           winner=True, goes_first=goes_first)
                 return stats
 
             if p1new_hand and round_start == 0:
@@ -36,7 +40,8 @@ def play_the_game(player_one, player_two, mana, goes_first, game_num):
                 round_start += 1
 
             p1start_num_creatures = p1_field.count(8)
-            p1_hand, p1_deck, p1_field, p1add_to, p1untapped_mana = main_phase(p1new_hand, p1new_deck, p1_field, p1_grave, mana)
+            p1_hand, p1_deck, p1_field, p1add_to, p1untapped_mana = main_phase(p1new_hand, p1new_deck,
+                                                                               p1_field, p1_grave, mana)
             p1now_num_creatures = p1_field.count(8)
             p1no_summoning_sickness = p1start_num_creatures - p1now_num_creatures
 
@@ -44,11 +49,14 @@ def play_the_game(player_one, player_two, mana, goes_first, game_num):
             mana_fed = check_snap_shot(p1_ss, p1_field)
             if mana_fed == 0:
                 stats = ["P2", p2_turns]
+                game_stats(p2_turns, "P2", mana, game_num, hand=None,
+                           method="ManaStarved", winner=True, goes_first=goes_first)
                 return stats
             if p1untapped_mana is not None:
                 p1current = p1untapped_mana[0] + p1untapped_mana[1] + p1untapped_mana[2]
                 if p1current > 0:
-                    hit = take_turn(p1_deck, p1_hand, p1_grave, p1untapped_mana, p2_field, p2_grave, "P2", p1_life, mana)
+                    hit = take_turn(p1_deck, p1_hand, p1_grave, p1untapped_mana, p2_field, p2_grave,
+                                    "P2", p1_life, mana)
                     if hit == 3:
                         p2_life -= 3
                         if ticker == 0:
@@ -70,6 +78,8 @@ def play_the_game(player_one, player_two, mana, goes_first, game_num):
                         method == "Combat Damage"
                         ticker += 1
                 else:
+                    game_stats(health[1], health[0], mana, game_num, hand=None, method="Combat",
+                               winner=True, goes_first=goes_first)
                     return health
             p1_turns += 1
             hand_check(p1_hand, p1_grave)
@@ -83,9 +93,13 @@ def play_the_game(player_one, player_two, mana, goes_first, game_num):
                 p2new_deck, p2new_hand = draw(p2_deck, p2_hand)
             except TypeError:
                 stats = ["P1", p1_turns]
+                game_stats(p1_turns, "P1", mana, game_num, hand=None, method="Milled",
+                           winner=True, goes_first=goes_first)
                 return stats
             if p2new_deck == []:
                 stats = ["P1", p1_turns]
+                game_stats(p1_turns, "P1", mana, game_num, hand=None,
+                           method="Milled", winner=True, goes_first=goes_first)
                 return stats
 
             if p2new_hand and round_start == 1:
@@ -100,6 +114,8 @@ def play_the_game(player_one, player_two, mana, goes_first, game_num):
             mana_fed = check_snap_shot(p2_ss, p2_field)
             if mana_fed == 0:
                 stats = ["P1", p1_turns]
+                game_stats(p1_turns, "P1", mana, game_num, hand=None, method="ManaStarved",
+                           winner=True, goes_first=goes_first)
                 return stats
             if p2untapped_mana is not None:
                 p2current = p2untapped_mana[0] + p2untapped_mana[1] + p2untapped_mana[2]
@@ -125,6 +141,8 @@ def play_the_game(player_one, player_two, mana, goes_first, game_num):
                         method = "Combat Damage"
                         ticker += 1
                 else:
+                    game_stats(health[1], health[0], mana, game_num, hand=None, method="Combat", winner=True,
+                               goes_first=goes_first)
                     return health
             p2_turns += 1
             hand_check(p2_hand, p2_grave)
@@ -139,9 +157,17 @@ def play_the_game(player_one, player_two, mana, goes_first, game_num):
             # print("Start of Round {}.".format(p2_turns +1))
             # print("Player2 Field {} Hand {} Graveyard {} Life Total {}".format(p2_field, p2_hand, p2_grave, p2_life))
             # print("Player1 Field {} Hand {} Graveyard {} Life Total {} ".format(p1_field, p1_hand, p1_grave, p1_life))
-            p2new_deck, p2new_hand = draw(p2_deck, p2_hand)
+            try:
+                p2new_deck, p2new_hand = draw(p2_deck, p2_hand)
+            except TypeError:
+                stats = ["P1", p1_turns]
+                game_stats(p1_turns, "P1", mana, game_num, hand=None, method="Milled",
+                           winner=True, goes_first=goes_first)
+                return stats
             if p2new_deck == []:
                 stats = ["P1", p1_turns]
+                game_stats(p1_turns, "P1", mana, game_num, hand=None,
+                           method="Milled", winner=True, goes_first=goes_first)
                 return stats
 
             if p2new_hand and round_start == 0:
@@ -156,6 +182,8 @@ def play_the_game(player_one, player_two, mana, goes_first, game_num):
             mana_fed = check_snap_shot(p2_ss, p2_field)
             if mana_fed == 0:
                 stats = ["P1", p1_turns]
+                game_stats(p1_turns, "P1", mana, game_num, hand=None, method="ManaStarved",
+                           winner=True, goes_first=goes_first)
                 return stats
             if p2untapped_mana is not None:
                 p2current = p2untapped_mana[0] + p2untapped_mana[1] + p2untapped_mana[2]
@@ -177,34 +205,37 @@ def play_the_game(player_one, player_two, mana, goes_first, game_num):
                     before_P2 = p2_life
                     p1_life = health[0]
                     p2_life = health[1]
-                    if before_P2 != p2_life and before_p1 == p1_life and ticker == 0:
+                    if before_p1 != p1_life and before_P2 == p2_life and ticker == 0:
                         method = "Combat Damage"
                         ticker += 1
                 else:
+                    game_stats(health[1], health[0], mana, game_num, hand=None, method="Combat", winner=True,
+                               goes_first=goes_first)
                     return health
             p2_turns += 1
             hand_check(p2_hand, p2_grave)
 
-            if p1_life < 20 and ticker == 1:
-                game_stats(p2_turns, "P2", mana, game_num, hand=None, method=method, winner=None, goes_first=goes_first)
-                ticker += 1
-
+            # Player Evo's turn
             try:
                 p1new_deck, p1new_hand = draw(p1_deck, p1_hand)
             except TypeError:
                 stats = ["P2", p2_turns]
+                game_stats(p2_turns, "P2", mana, game_num, hand=None, method="Milled",
+                           winner=True, goes_first=goes_first)
                 return stats
             if p1new_deck == []:
                 stats = ["P2", p2_turns]
+                game_stats(p2_turns, "P2", mana, game_num, hand=None, method="Milled",
+                           winner=True, goes_first=goes_first)
                 return stats
 
             if p1new_hand and round_start == 1:
-                game_stats((p1_turns+1), "P1", mana, game_num, p1new_hand)
+                game_stats(round_start, "P1", mana, game_num, p1new_hand)
                 round_start += 1
 
             p1start_num_creatures = p1_field.count(8)
-            p1_hand, p1_deck, p1_field, p1add_to, p1untapped_mana = main_phase(p1new_hand, p1new_deck, p1_field, p1_grave,
-                                                                               mana)
+            p1_hand, p1_deck, p1_field, p1add_to, p1untapped_mana = main_phase(p1new_hand, p1new_deck,
+                                                                               p1_field, p1_grave, mana)
             p1now_num_creatures = p1_field.count(8)
             p1no_summoning_sickness = p1start_num_creatures - p1now_num_creatures
 
@@ -212,11 +243,14 @@ def play_the_game(player_one, player_two, mana, goes_first, game_num):
             mana_fed = check_snap_shot(p1_ss, p1_field)
             if mana_fed == 0:
                 stats = ["P2", p2_turns]
+                game_stats(p2_turns, "P2", mana, game_num, hand=None,
+                           method="ManaStarved", winner=True, goes_first=goes_first)
                 return stats
             if p1untapped_mana is not None:
                 p1current = p1untapped_mana[0] + p1untapped_mana[1] + p1untapped_mana[2]
                 if p1current > 0:
-                    hit = take_turn(p1_deck, p1_hand, p1_grave, p1untapped_mana, p2_field, p2_grave, "P2", p1_life, mana)
+                    hit = take_turn(p1_deck, p1_hand, p1_grave, p1untapped_mana, p2_field, p2_grave,
+                                    "P2", p1_life, mana)
                     if hit == 3:
                         p2_life -= 3
                         if ticker == 0:
@@ -234,10 +268,12 @@ def play_the_game(player_one, player_two, mana, goes_first, game_num):
                     before_P2 = p2_life
                     p1_life = health[0]
                     p2_life = health[1]
-                    if before_p1 != p1_life and before_P2 == p2_life and ticker == 0:
-                        method = "Combat Damage"
+                    if before_P2 != p2_life and before_p1 == p1_life and ticker == 0:
+                        method == "Combat Damage"
                         ticker += 1
                 else:
+                    game_stats(health[1], health[0], mana, game_num, hand=None, method="Combat",
+                               winner=True, goes_first=goes_first)
                     return health
             p1_turns += 1
             hand_check(p1_hand, p1_grave)
@@ -281,12 +317,12 @@ def out_of_all_games(cc, mana, evo):
             if winner[0] == "P1":
                 evo_draw_steps.append(winner[1])
                 evo_wilds_wins += 1
-                print("Evo wins")
+                # print("Evo wins")
                 games -= 1
             elif winner[0] == "P2":
                 non_evo_draw_steps.append(winner[1])
                 non_evo_wins += 1
-                print("Non-Evo wins")
+                # print("Non-Evo wins")
                 games -= 1
 
     evo_totes = sum(evo_draw_steps)/len(evo_draw_steps)
@@ -300,6 +336,8 @@ def out_of_all_games(cc, mana, evo):
     print("Without Evolving Wilds: {} Cards Drawn Into Win Condition.".format(non_evo_totes))
     get_open_hand_stats()
     get_first_blood_stats()
+    get_who_wins_stats()
+    get_mana_starved_stats()
 
 
 out_of_all_games(40, 2, 2)
