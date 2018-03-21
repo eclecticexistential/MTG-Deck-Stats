@@ -300,29 +300,41 @@ def out_of_all_games(cc, mana, evo):
     non_evo_draw_steps = []
     games = 100
     while games > 0:
-        player_one = establish_field(cc, mana, evo)
-        if player_one is False:
-            non_evo_wins += 1
-            non_evo_draw_steps.append(0)
-            games -= 1
-        player_two = establish_field(cc, mana)
-        if player_two is False:
-            evo_wilds_wins += 1
-            evo_draw_steps.append(0)
-            games -= 1
-        elif player_one and player_two:
-            goes_first = status()
+        goes_first = status()
+        if goes_first == 0:
+            player_one = establish_field(cc, mana, games, goes_first, evo)
+            if player_one is False:
+                non_evo_wins += 1
+                non_evo_draw_steps.append(0)
+                games -= 1
+            player_two = establish_field(cc, mana, games, goes_first)
+            if player_two is False:
+                evo_wilds_wins += 1
+                evo_draw_steps.append(0)
+                games -= 1
+        if goes_first == 1:
+            player_two = establish_field(cc, mana, games, goes_first)
+            if player_two is False:
+                evo_wilds_wins += 1
+                evo_draw_steps.append(0)
+                games -= 1
+            player_one = establish_field(cc, mana, games, goes_first, evo)
+            if player_one is False:
+                non_evo_wins += 1
+                non_evo_draw_steps.append(0)
+                games -= 1
+        if player_one and player_two:
             winner = play_the_game(player_one, player_two, mana, goes_first, games)
             # appends num of draws into win condition if player won
             if winner[0] == "P1":
                 evo_draw_steps.append(winner[1])
                 evo_wilds_wins += 1
-                # print("Evo wins")
+                print("Evo wins {}".format(games))
                 games -= 1
             elif winner[0] == "P2":
                 non_evo_draw_steps.append(winner[1])
                 non_evo_wins += 1
-                # print("Non-Evo wins")
+                print("Non-Evo wins {}".format(games))
                 games -= 1
 
     evo_totes = sum(evo_draw_steps)/len(evo_draw_steps)
@@ -334,14 +346,14 @@ def out_of_all_games(cc, mana, evo):
     print("Ties to Win {}".format(ties))
     print("With Evolving Wilds: {} Cards Drawn Into Win Condition.".format(evo_totes))
     print("Without Evolving Wilds: {} Cards Drawn Into Win Condition.".format(non_evo_totes))
-    get_open_hand_stats()
-    get_first_blood_stats()
+    # get_open_hand_stats()
+    # get_first_blood_stats()
     get_who_wins_stats()
-    get_mana_starved_stats()
+    # get_mana_starved_stats()
 
 
 out_of_all_games(40, 2, 2)
-out_of_all_games(40, 3, 3)
+# out_of_all_games(40, 3, 3)
 
 
 # magic api starcity,tcg for data sets

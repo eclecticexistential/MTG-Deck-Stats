@@ -1,5 +1,5 @@
-
 from mtgClasses import *
+from collect_stats import game_stats
 
 
 def dice():
@@ -20,30 +20,34 @@ def create_hand(deck, cc):
     return list(new_hand)
 
 
-def mulligan(deck, mana, cc):
+def mulligan(deck, mana, cc, goes_first, games):
     smaller_hand = create_hand(deck, cc)
-    return check_hand(smaller_hand, mana, deck)
+    return check_hand(smaller_hand, mana, deck, goes_first, games)
 
 
-def check_hand(hand, mana, deck):
+def check_hand(hand, mana, deck, goes_first, games, evos=0):
     a = hand.count(2)
     b = hand.count(3)
     c = hand.count(4)
     evo = hand.count(10)
     cc = len(hand)
     if cc < 3:
+        if evos > 0:
+            game_stats(0, "P1", mana, games, hand=None, method="NoManaHand", winner=True, goes_first=goes_first)
+        elif evos == 0:
+            game_stats(0, "P2", mana, games, hand=None, method="NoManaHand", winner=True, goes_first=goes_first)
         return False
     if mana == 1:
         if a < 2:
             cc -= 1
-            return mulligan(deck, mana, cc)
+            return mulligan(deck, mana, cc, goes_first, games)
     if mana == 2:
         if a == 0 or b == 0:
             if evo > 0:
                 return hand
             else:
                 cc -= 1
-                return mulligan(deck, mana, cc)
+                return mulligan(deck, mana, cc, goes_first, games)
         else:
             return hand
     if mana == 3:
@@ -52,19 +56,19 @@ def check_hand(hand, mana, deck):
                 return hand
             else:
                 cc -= 1
-                return mulligan(deck, mana, cc)
+                return mulligan(deck, mana, cc, goes_first, games)
         elif evo == 0:
             if a > 0 and b > 0 and c > 0:
                 return hand
             else:
                 cc -= 1
-                return mulligan(deck, mana, cc)
+                return mulligan(deck, mana, cc, goes_first, games)
 
 
-def open_hand(cards, typemana, evos=0):
+def open_hand(cards, typemana, games, goes_first, evos=0):
     this_deck = create_deck(cards, typemana, evos)
     a_hand = create_hand(this_deck, 7)
-    manad = check_hand(a_hand, typemana, this_deck)
+    manad = check_hand(a_hand, typemana, this_deck, goes_first, games, evos)
     if manad:
         curr_deck = list(this_deck)
         for card in manad:
@@ -75,9 +79,9 @@ def open_hand(cards, typemana, evos=0):
         return False
 
 
-def establish_field(cc, type_mana, evos=0):
+def establish_field(cc, type_mana, games, goes_first, evos=0):
     try:
-        player_stats = open_hand(cc, type_mana, evos)
+        player_stats = open_hand(cc, type_mana, games, goes_first, evos)
         field = []
         player_stats.append(field)
         graveyard = []

@@ -4,6 +4,7 @@ who_wins_stats = []
 mana_starved = []
 milled_stats = []
 death_by_combat = []
+no_mana_hand = []
 
 
 def game_stats(rounds, player, mana, game, hand=None, method=None, winner=None, goes_first=None):
@@ -11,6 +12,8 @@ def game_stats(rounds, player, mana, game, hand=None, method=None, winner=None, 
         open_hands_stats.append([mana, game, player, hand])
     if method and winner is None:
         first_blood_stats.append([mana, game, rounds, player, method, goes_first])
+    if winner and method is "NoManaHand":
+        no_mana_hand.append([mana, game, rounds, player, goes_first])
     if winner and method is "ManaStarved":
         mana_starved.append([mana, game, rounds, player, goes_first])
     if winner and method is "Milled":

@@ -169,7 +169,7 @@ def check_snap_shot(x, field):
         elif x == 0 and y == 0:
             mana_stuck += 1
     if mana_stuck > 3 and field_tots <= 4:
-        print("Mana starved.")
+        # print("Mana starved.")
         return 0
     else:
         return 1
