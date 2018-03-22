@@ -1,6 +1,5 @@
 from mtg_evo_wilds_stats import *
 from collect_stats import game_stats
-from to_database import get_open_hand_stats, get_first_blood_stats, get_who_wins_stats, get_mana_starved_stats
 
 
 def play_the_game(player_one, player_two, mana, goes_first, game_num):
@@ -329,35 +328,21 @@ def out_of_all_games(cc, mana, evo):
             if winner[0] == "P1":
                 evo_draw_steps.append(winner[1])
                 evo_wilds_wins += 1
-                print("Evo wins {}".format(games))
+                # print("Evo wins {}".format(games))
                 games -= 1
             elif winner[0] == "P2":
                 non_evo_draw_steps.append(winner[1])
                 non_evo_wins += 1
-                print("Non-Evo wins {}".format(games))
+                # print("Non-Evo wins {}".format(games))
                 games -= 1
 
     evo_totes = sum(evo_draw_steps)/len(evo_draw_steps)
     non_evo_totes = sum(non_evo_draw_steps)/len(non_evo_draw_steps)
-    print()
-    print("Stats for {} Mana Limited Deck \n".format(mana))
-    print("Evo Deck Wins {}".format(evo_wilds_wins))
-    print("Non Evo Deck Wins {}".format(non_evo_wins))
-    print("Ties to Win {}".format(ties))
-    print("With Evolving Wilds: {} Cards Drawn Into Win Condition.".format(evo_totes))
-    print("Without Evolving Wilds: {} Cards Drawn Into Win Condition.".format(non_evo_totes))
-    # get_open_hand_stats()
-    # get_first_blood_stats()
-    get_who_wins_stats()
-    # get_mana_starved_stats()
+    # print()
+    # print("Stats for {} Mana Limited Deck \n".format(mana))
+    # print("Evo Deck Wins {}".format(evo_wilds_wins))
+    # print("Non Evo Deck Wins {}".format(non_evo_wins))
+    # print("Ties to Win {}".format(ties))
+    # print("With Evolving Wilds: {} Cards Drawn Into Win Condition.".format(evo_totes))
+    # print("Without Evolving Wilds: {} Cards Drawn Into Win Condition.".format(non_evo_totes))
 
-
-out_of_all_games(40, 2, 2)
-# out_of_all_games(40, 3, 3)
-
-
-# magic api starcity,tcg for data sets
-# tcg life duration price of card
-
-# lsv hypergeometric calculator
-# mtgjson

@@ -15,7 +15,7 @@ def initialize_open_hand():
             "Game INTEGER NOT NULL, Player TEXT NOT NULL, Hand INTEGER NOT NULL);")
         open_hand_db_conn.commit()
 
-        print("Table Created")
+        # print("Table Created")
 
     except sqlite3.OperationalError:
         print("Table couldn't be Created")
@@ -34,7 +34,7 @@ def get_open_hand_stats():
     try:
         result = open_hand_cursor.execute("SELECT Mana, Game, Player, Hand FROM Open_hands")
         for item in result:
-            print(list(item))
+            yield list(item)
 
     except sqlite3.OperationalError:
         print("The Table Doesn't Exist")
@@ -53,7 +53,7 @@ def initialize_first_blood():
             "GoesFirst INTEGER NOT NULL);")
         first_blood_db_conn.commit()
 
-        print("Table Created")
+        # print("Table Created")
 
     except sqlite3.OperationalError:
         print("Table couldn't be Created")
@@ -73,7 +73,7 @@ def get_first_blood_stats():
     try:
         result = cursor.execute("SELECT Mana, Game, Round, Player, Method, GoesFirst FROM First_blood")
         for item in result:
-            print(list(item))
+            yield list(item)
 
     except sqlite3.OperationalError:
         print("The Table Doesn't Exist")
@@ -92,7 +92,7 @@ def initialize_who_wins():
             "GoesFirst TEXT NOT NULL);")
         who_wins_db_conn.commit()
 
-        print("Table Created")
+        # print("Table Created")
 
     except sqlite3.OperationalError:
         print("Table couldn't be Created")
@@ -112,7 +112,7 @@ def get_who_wins_stats():
     try:
         result = cursor.execute("SELECT Mana, Game, Round, Player, Method, GoesFirst FROM Who_wins")
         for item in result:
-            print(list(item))
+            yield list(item)
 
     except sqlite3.OperationalError:
         print("The Table Doesn't Exist")
@@ -130,7 +130,7 @@ def initialize_mana_starved():
             "Game INTEGER NOT NULL, Round INTEGER NOT NULL, Player TEXT NOT NULL, GoesFirst TEXT NOT NULL);")
         mana_starved_db_conn.commit()
 
-        print("Table Created")
+        # print("Table Created")
 
     except sqlite3.OperationalError:
         print("Table couldn't be Created")
@@ -150,7 +150,7 @@ def get_mana_starved_stats():
     try:
         result = cursor.execute("SELECT Mana, Game, Round, Player, GoesFirst FROM Mana_starved")
         for item in result:
-            print(list(item))
+            yield list(item)
 
     except sqlite3.OperationalError:
         print("The Table Doesn't Exist")

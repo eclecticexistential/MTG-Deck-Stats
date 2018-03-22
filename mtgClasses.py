@@ -1,6 +1,7 @@
 import math
 import random
 
+
 class Mana:
     def __init__(self, land_type=1, num_lands=17, evo=0):
         if land_type < 1:
