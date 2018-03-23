@@ -20,55 +20,58 @@ def create_hand(deck, cc):
     return list(new_hand)
 
 
-def mulligan(deck, mana, cc, goes_first, games):
+def mulligan(deck, mana, cc, goes_first, games, player, evos):
     smaller_hand = create_hand(deck, cc)
-    return check_hand(smaller_hand, mana, deck, goes_first, games)
+    return check_hand(smaller_hand, mana, deck, goes_first, games, player, evos)
 
 
-def check_hand(hand, mana, deck, goes_first, games, evos=0):
+def check_hand(hand, mana, deck, goes_first, games, player, evos=0):
     a = hand.count(2)
     b = hand.count(3)
     c = hand.count(4)
-    evo = hand.count(10)
+    evo_in_hand = hand.count(10)
     cc = len(hand)
     if cc < 3:
         if evos > 0:
-            game_stats(0, "P1", mana, games, hand=None, method="NoManaHand", winner=True, goes_first=goes_first)
+            game_stats(0, player, mana, games, hand=None, method="NoManaHand", winner=True, goes_first=goes_first)
         elif evos == 0:
-            game_stats(0, "P2", mana, games, hand=None, method="NoManaHand", winner=True, goes_first=goes_first)
+            game_stats(0, player, mana, games, hand=None, method="NoManaHand", winner=True, goes_first=goes_first)
         return False
     if mana == 1:
         if a < 2:
             cc -= 1
-            return mulligan(deck, mana, cc, goes_first, games)
-    if mana == 2:
-        if a == 0 or b == 0:
-            if evo > 0:
+            return mulligan(deck, mana, cc, goes_first, games, player, evos)
+    elif mana == 2:
+        if a == 0 and b > 0 or a > 0 and b == 0:
+            if evo_in_hand > 0:
+                game_stats(0, player, mana, games, hand, method=None, winner=None, goes_first=None)
                 return hand
             else:
                 cc -= 1
-                return mulligan(deck, mana, cc, goes_first, games)
-        else:
+                return mulligan(deck, mana, cc, goes_first, games, player, evos)
+        elif a > 0 and b > 0:
+            if evos > 0:
+                game_stats(0, player, mana, games, hand, method=None, winner=None, goes_first=None)
+            elif evos == 0:
+                game_stats(0, player, mana, games, hand, method=None, winner=None, goes_first=None)
             return hand
-    if mana == 3:
-        if evo > 0:
-            if a > 0 and b > 0 or a > 0 and c > 0 or b > 0 and c > 0:
+    elif mana == 3:
+        if evo_in_hand > 0:
+            if a > 0 or b > 0 or c > 0:
+                game_stats(0, player, mana, games, hand, method=None, winner=None, goes_first=None)
                 return hand
-            else:
-                cc -= 1
-                return mulligan(deck, mana, cc, goes_first, games)
-        elif evo == 0:
-            if a > 0 and b > 0 and c > 0:
+        elif a > 0 and b > 0 or a > 0 and c > 0 or b > 0 and c > 0:
+                game_stats(0, player, mana, games, hand, method=None, winner=None, goes_first=None)
                 return hand
-            else:
-                cc -= 1
-                return mulligan(deck, mana, cc, goes_first, games)
+        else:
+            cc -= 1
+            return mulligan(deck, mana, cc, goes_first, games, player, evos)
 
 
-def open_hand(cards, typemana, games, goes_first, evos=0):
+def open_hand(cards, typemana, games, goes_first, player, evos=0):
     this_deck = create_deck(cards, typemana, evos)
     a_hand = create_hand(this_deck, 7)
-    manad = check_hand(a_hand, typemana, this_deck, goes_first, games, evos)
+    manad = check_hand(a_hand, typemana, this_deck, goes_first, games, player, evos)
     if manad:
         curr_deck = list(this_deck)
         for card in manad:
@@ -79,9 +82,9 @@ def open_hand(cards, typemana, games, goes_first, evos=0):
         return False
 
 
-def establish_field(cc, type_mana, games, goes_first, evos=0):
+def establish_field(cc, type_mana, games, goes_first, player, evos=0):
     try:
-        player_stats = open_hand(cc, type_mana, games, goes_first, evos)
+        player_stats = open_hand(cc, type_mana, games, goes_first, player, evos)
         field = []
         player_stats.append(field)
         graveyard = []
@@ -98,7 +101,7 @@ def hand_check(hand, graveyard):
             hand.remove(8)
             graveyard.append(8)
             return hand, graveyard
-        if 33 in hand:
-            hand.remove(33)
-            graveyard.append(33)
+        if 18 in hand:
+            hand.remove(18)
+            graveyard.append(18)
             return hand, graveyard

@@ -105,27 +105,27 @@ def removal(hand, field, p1_graveyard, p2_graveyard, untapped_mana, mana, player
     land1 = untapped_mana[0]
     land2 = untapped_mana[1]
     land3 = untapped_mana[2]
-    if 33 in hand:
+    if 18 in hand:
         if 88 in field:
             if mana == 2:
                 if land1 >= 1 and land2 >= 1:
                     field.remove(88)
-                    hand.remove(33)
+                    hand.remove(18)
                     untapped_mana[0] -= 1
                     untapped_mana[1] -= 1
                     # opposite player sent to establish who won scenarios...use to distinguish graveyards
                     if player == "P1":
                         p2_graveyard.append(88)
-                        p1_graveyard.append(33)
+                        p1_graveyard.append(18)
                     elif player == "P2":
                         p1_graveyard.append(88)
-                        p2_graveyard.append(33)
+                        p2_graveyard.append(18)
                     # print("88 was removed")
                     return untapped_mana
             if mana == 3:
                 if land1 >= 1 and land2 >= 1 or land2 >= 1 and land3 >= 1 or land1 >= 1 and land3 >= 1:
                     field.remove(88)
-                    hand.remove(33)
+                    hand.remove(18)
                     if land1 >= 1 and land2 >= 1:
                         untapped_mana[0] -= 1
                         untapped_mana[1] -= 1
@@ -137,10 +137,10 @@ def removal(hand, field, p1_graveyard, p2_graveyard, untapped_mana, mana, player
                         untapped_mana[2] -= 1
                     if player == "P1":
                         p2_graveyard.append(88)
-                        p1_graveyard.append(33)
+                        p1_graveyard.append(18)
                     elif player == "P2":
                         p1_graveyard.append(88)
-                        p2_graveyard.append(33)
+                        p2_graveyard.append(18)
                     # print("88 was removed")
                     return untapped_mana
         else:
@@ -191,16 +191,16 @@ def draw_card(deck, hand, graveyard, mana, available_mana):
     c = available_mana[2]
     if mana == 2:
         if a >= 1 and b >= 1:
-            hand.remove(42)
-            graveyard.append(42)
+            hand.remove(17)
+            graveyard.append(17)
             available_mana[0] -= 1
             available_mana[1] -= 1
             # print("drew card")
             return draw(deck, hand)
     elif mana == 3:
         if a >= 1 and b >= 1 or b >= 1 and c >= 1 or a >= 1 and c >= 1:
-            hand.remove(42)
-            graveyard.append(42)
+            hand.remove(17)
+            graveyard.append(17)
             # print("drew card")
             if a >= 1:
                 available_mana[0] -= 1

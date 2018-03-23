@@ -178,7 +178,7 @@ def check_snap_shot(x, field):
 def take_turn(deck, hand, graveyard, untapped_mana, opp_field, opp_graveyard, player, life, mana):
     removal(hand, opp_field, graveyard, opp_graveyard, untapped_mana, mana, player)
     if len(hand) < 6:
-        if 42 in hand:
+        if 17 in hand:
             return draw_card(deck, hand, graveyard, mana, untapped_mana)
     if life >= 3 and 66 in hand:
         return tutor(hand, deck, graveyard, untapped_mana, mana)
