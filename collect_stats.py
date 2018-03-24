@@ -151,13 +151,52 @@ def get_who_wins_stats():
     except:
         print("Couldn't Retrieve Data From Database")
 
+
+draw_into_win_db_conn = sqlite3.connect('DrawCon.db')
+
+
+def initialize_draw_into_win():
+    draw_into_win_db_conn.execute("DROP TABLE IF EXISTS DrawCon")
+    draw_into_win_db_conn.commit()
+    try:
+        draw_into_win_db_conn.execute(
+            "CREATE TABLE DrawCon(ID INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, EvoDraw INTEGER NOT NULL, "
+            "NonEvo INTEGER NOT NULL);")
+        draw_into_win_db_conn.commit()
+
+        # print("Table Created")
+
+    except sqlite3.OperationalError:
+        print("Table couldn't be Created")
+
+
+def insert_into_draw_into_win_db(evo_draw, non_evo_draw):
+    draw_into_win_db_conn.execute("INSERT INTO DrawCon (EvoDraw, NonEvo) VALUES ('"
+                             + str(evo_draw) + "', '" + str(non_evo_draw) + "')")
+
+
+def get_draw_into_win_stats():
+    cursor = draw_into_win_db_conn.cursor()
+    try:
+        result = cursor.execute("SELECT EvoDraw, NonEvo FROM DrawCon")
+        for item in result:
+            yield list(item)
+
+    except sqlite3.OperationalError:
+        print("The Table Doesn't Exist")
+
+    except:
+        print("Couldn't Retrieve Data From Database")
+
+
 initialize_open_hand()
 initialize_first_blood()
 initialize_mana_starved()
 initialize_who_wins()
+initialize_draw_into_win()
 
 
-def game_stats(rounds, player, mana, game, hand=None, method=None, winner=None, goes_first=None):
+def game_stats(rounds, player, mana, game, hand=None, method=None, winner=None, goes_first=None, draws=None):
     if hand is not None and method is None:
         insert_into_open_hand_db(mana, game, player, hand)
     if method and winner is None:
@@ -172,3 +211,5 @@ def game_stats(rounds, player, mana, game, hand=None, method=None, winner=None, 
     #     death_by_combat.append([mana, game, rounds, player, goes_first])
     if method and winner:
         insert_into_who_wins_db(mana, game, rounds, player, method, goes_first)
+    if draws is not None:
+        insert_into_draw_into_win_db(draws[0], draws[1])

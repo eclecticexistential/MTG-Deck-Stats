@@ -324,12 +324,12 @@ def out_of_all_games(cc, mana, evo):
             if player_one and player_two:
                 winner = play_the_game(player_one, player_two, mana, goes_first, games)
                 # appends num of draws into win condition if player won
-                if winner[0] == "P1":
+                if winner[0] == "P1" and winner[1] != 0:
                     evo_draw_steps.append(winner[1])
                     evo_wilds_wins += 1
                     # print("Evo wins {}".format(games))
                     games -= 1
-                elif winner[0] == "P2":
+                elif winner[0] == "P2" and winner[1] != 0:
                     non_evo_draw_steps.append(winner[1])
                     non_evo_wins += 1
                     # print("Non-Evo wins {}".format(games))
@@ -337,11 +337,12 @@ def out_of_all_games(cc, mana, evo):
 
     evo_totes = sum(evo_draw_steps)/len(evo_draw_steps)
     non_evo_totes = sum(non_evo_draw_steps)/len(non_evo_draw_steps)
-    print()
-    print("Stats for {} Mana Limited Deck \n".format(mana))
-    print("Evo Deck Wins {}".format(evo_wilds_wins))
-    print("Non Evo Deck Wins {}".format(non_evo_wins))
-    print("Ties to Win {}".format(ties))
-    print("With Evolving Wilds: {} Cards Drawn Into Win Condition.".format(evo_totes))
-    print("Without Evolving Wilds: {} Cards Drawn Into Win Condition.".format(non_evo_totes))
+    game_stats(0, 'all', 0, 100, hand=None, method=None, winner=None, goes_first=None, draws=[evo_totes, non_evo_totes])
+    # print()
+    # print("Stats for {} Mana Limited Deck \n".format(mana))
+    # print("Evo Deck Wins {}".format(evo_wilds_wins))
+    # print("Non Evo Deck Wins {}".format(non_evo_wins))
+    # print("Ties to Win {}".format(ties))
+    # print("With Evolving Wilds: {} Cards Drawn Into Win Condition.".format(evo_totes))
+    # print("Without Evolving Wilds: {} Cards Drawn Into Win Condition.".format(non_evo_totes))
 
