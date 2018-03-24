@@ -1,0 +1,71 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Limited 2 Mana - Win By Turn Stats</title>
+        
+<link rel="stylesheet" href="https://cdn.pydata.org/bokeh/release/bokeh-0.12.13.min.css" type="text/css" />
+        
+<script type="text/javascript" src="https://cdn.pydata.org/bokeh/release/bokeh-0.12.13.min.js"></script>
+<script type="text/javascript">
+    Bokeh.set_log_level("info");
+</script>
+        <style>
+          html {
+            width: 100%;
+            height: 100%;
+          }
+          body {
+            width: 90%;
+            height: 100%;
+            margin: auto;
+          }
+        </style>
+    </head>
+    <body>
+        
+        <div class="bk-root">
+            <div class="bk-plotdiv" id="f2a69f9a-3fdd-4c14-8471-ec3c684c50f0"></div>
+        </div>
+        
+        <script type="application/json" id="012ef6c3-5420-475f-9861-419cf7c2ed26">
+          {"bdd5b704-7318-4b81-82f7-acfd4ae28761":{"roots":{"references":[{"attributes":{},"id":"23ea301b-2d73-41a6-9e7a-716b897b64e9","type":"SaveTool"},{"attributes":{"bottom_units":"screen","fill_alpha":{"value":0.5},"fill_color":{"value":"lightgrey"},"left_units":"screen","level":"overlay","line_alpha":{"value":1.0},"line_color":{"value":"black"},"line_dash":[4,4],"line_width":{"value":2},"plot":null,"render_mode":"css","right_units":"screen","top_units":"screen"},"id":"f0ebdb73-0eb3-4d5d-972c-98afa1c0483b","type":"BoxAnnotation"},{"attributes":{"end_angle":{"field":"ends","units":"rad"},"fill_alpha":{"value":0.1},"fill_color":{"value":"#1f77b4"},"line_alpha":{"value":0.1},"line_color":{"value":"#1f77b4"},"radius":{"units":"data","value":1},"start_angle":{"field":"starts","units":"rad"},"x":{"value":0},"y":{"value":0}},"id":"82e22d5a-d8ff-4c74-80cb-598c3b28ed6d","type":"Wedge"},{"attributes":{"data_source":{"id":"9e149b30-2546-466e-9b7e-601f5f0f94ad","type":"ColumnDataSource"},"glyph":{"id":"beea4880-de5d-4b25-8b31-8298250a9a18","type":"Wedge"},"hover_glyph":null,"muted_glyph":null,"nonselection_glyph":{"id":"82e22d5a-d8ff-4c74-80cb-598c3b28ed6d","type":"Wedge"},"selection_glyph":null,"view":{"id":"820b5a0b-50b0-4901-a278-8ebad457496d","type":"CDSView"}},"id":"73723660-0b6f-40b5-8d6c-c5dfe4993cbb","type":"GlyphRenderer"},{"attributes":{"items":[{"id":"e2c2707d-8a6c-4805-9beb-bdd97aa8ab1d","type":"LegendItem"}],"plot":{"id":"5bc8a4be-6c64-4adf-8305-e20927ff2dd8","subtype":"Figure","type":"Plot"}},"id":"be4b368f-8096-49d4-9e23-bbf274305ac7","type":"Legend"},{"attributes":{"callback":null,"end":1.25,"start":-1.25},"id":"85d3ebd6-7f7e-4cef-81b2-1ab2927b9798","type":"Range1d"},{"attributes":{"plot":{"id":"5bc8a4be-6c64-4adf-8305-e20927ff2dd8","subtype":"Figure","type":"Plot"},"ticker":{"id":"0a405568-860c-40f2-983c-58a51eb767d7","type":"BasicTicker"}},"id":"6e6c2c89-6abd-4e4e-88ad-974530c6dc22","type":"Grid"},{"attributes":{"callback":null,"end":1.25,"start":-1.25},"id":"8e4c6aeb-ee2c-417d-b02e-17a438d2c271","type":"Range1d"},{"attributes":{"callback":null,"column_names":["starts","ends","color","name","amount"],"data":{"amount":[["52%"],["48%"]],"color":["red","blue"],"ends":[3.267256359733385,6.283185307179586],"name":["Wins Playing Second","Wins Playing First"],"starts":[0.0,3.267256359733385]}},"id":"9e149b30-2546-466e-9b7e-601f5f0f94ad","type":"ColumnDataSource"},{"attributes":{"active_drag":"auto","active_inspect":"auto","active_scroll":"auto","active_tap":"auto","tools":[{"id":"2e4cb34d-398d-43c4-8c1f-4134e46a8f27","type":"PanTool"},{"id":"e708395b-2082-4db8-b667-64a77da3bbd4","type":"WheelZoomTool"},{"id":"d5a6119d-7a56-46b2-aafc-5fa4dc3d03c5","type":"BoxZoomTool"},{"id":"b34f769a-770e-46cd-8796-8109e1e0c40b","type":"ResetTool"},{"id":"7d6a65d8-d263-4a88-b1f5-6822fece5cf1","type":"HoverTool"},{"id":"23ea301b-2d73-41a6-9e7a-716b897b64e9","type":"SaveTool"}]},"id":"1d1c3a99-5b07-4647-9a65-f48f35b0c2f3","type":"Toolbar"},{"attributes":{},"id":"0a405568-860c-40f2-983c-58a51eb767d7","type":"BasicTicker"},{"attributes":{"plot":null,"text":"Limited Win By Turn Percentage","text_font_size":{"value":"24px"}},"id":"4e678bd0-29b8-48d7-9c14-ed952d04cf4c","type":"Title"},{"attributes":{"renderers":[{"id":"6e6c2c89-6abd-4e4e-88ad-974530c6dc22","type":"Grid"},{"id":"5e7e1eaa-bb86-4f59-8efc-8265e97d4f61","type":"Grid"},{"id":"f0ebdb73-0eb3-4d5d-972c-98afa1c0483b","type":"BoxAnnotation"},{"id":"be4b368f-8096-49d4-9e23-bbf274305ac7","type":"Legend"},{"id":"73723660-0b6f-40b5-8d6c-c5dfe4993cbb","type":"GlyphRenderer"}],"title":{"id":"4e678bd0-29b8-48d7-9c14-ed952d04cf4c","type":"Title"},"toolbar":{"id":"1d1c3a99-5b07-4647-9a65-f48f35b0c2f3","type":"Toolbar"},"x_range":{"id":"85d3ebd6-7f7e-4cef-81b2-1ab2927b9798","type":"Range1d"},"x_scale":{"id":"e29e6df7-a624-4316-aaef-f1c1669baa03","type":"LinearScale"},"y_range":{"id":"8e4c6aeb-ee2c-417d-b02e-17a438d2c271","type":"Range1d"},"y_scale":{"id":"150609a5-0f3b-49db-9738-ebf543c5b430","type":"LinearScale"}},"id":"5bc8a4be-6c64-4adf-8305-e20927ff2dd8","subtype":"Figure","type":"Plot"},{"attributes":{"source":{"id":"9e149b30-2546-466e-9b7e-601f5f0f94ad","type":"ColumnDataSource"}},"id":"820b5a0b-50b0-4901-a278-8ebad457496d","type":"CDSView"},{"attributes":{},"id":"e29e6df7-a624-4316-aaef-f1c1669baa03","type":"LinearScale"},{"attributes":{},"id":"150609a5-0f3b-49db-9738-ebf543c5b430","type":"LinearScale"},{"attributes":{"label":{"field":"name"},"renderers":[{"id":"73723660-0b6f-40b5-8d6c-c5dfe4993cbb","type":"GlyphRenderer"}]},"id":"e2c2707d-8a6c-4805-9beb-bdd97aa8ab1d","type":"LegendItem"},{"attributes":{"end_angle":{"field":"ends","units":"rad"},"fill_color":{"field":"color"},"line_color":{"field":"color"},"radius":{"units":"data","value":1},"start_angle":{"field":"starts","units":"rad"},"x":{"value":0},"y":{"value":0}},"id":"beea4880-de5d-4b25-8b31-8298250a9a18","type":"Wedge"},{"attributes":{"dimension":1,"plot":{"id":"5bc8a4be-6c64-4adf-8305-e20927ff2dd8","subtype":"Figure","type":"Plot"},"ticker":{"id":"0d14ef79-b7d5-4c92-9c7c-757790623beb","type":"BasicTicker"}},"id":"5e7e1eaa-bb86-4f59-8efc-8265e97d4f61","type":"Grid"},{"attributes":{},"id":"2e4cb34d-398d-43c4-8c1f-4134e46a8f27","type":"PanTool"},{"attributes":{},"id":"0d14ef79-b7d5-4c92-9c7c-757790623beb","type":"BasicTicker"},{"attributes":{},"id":"e708395b-2082-4db8-b667-64a77da3bbd4","type":"WheelZoomTool"},{"attributes":{"overlay":{"id":"f0ebdb73-0eb3-4d5d-972c-98afa1c0483b","type":"BoxAnnotation"}},"id":"d5a6119d-7a56-46b2-aafc-5fa4dc3d03c5","type":"BoxZoomTool"},{"attributes":{},"id":"b34f769a-770e-46cd-8796-8109e1e0c40b","type":"ResetTool"},{"attributes":{"callback":null,"tooltips":[["Name","@name"],["Percentage Won","@amount"]]},"id":"7d6a65d8-d263-4a88-b1f5-6822fece5cf1","type":"HoverTool"}],"root_ids":["5bc8a4be-6c64-4adf-8305-e20927ff2dd8"]},"title":"Bokeh Application","version":"0.12.13"}}
+        </script>
+        <script type="text/javascript">
+          (function() {
+            var fn = function() {
+              Bokeh.safely(function() {
+                (function(root) {
+                  function embed_document(root) {
+                    
+                  var docs_json = document.getElementById('012ef6c3-5420-475f-9861-419cf7c2ed26').textContent;
+                  var render_items = [{"docid":"bdd5b704-7318-4b81-82f7-acfd4ae28761","elementid":"f2a69f9a-3fdd-4c14-8471-ec3c684c50f0","modelid":"5bc8a4be-6c64-4adf-8305-e20927ff2dd8"}];
+                  root.Bokeh.embed.embed_items(docs_json, render_items);
+                
+                  }
+                  if (root.Bokeh !== undefined) {
+                    embed_document(root);
+                  } else {
+                    var attempts = 0;
+                    var timer = setInterval(function(root) {
+                      if (root.Bokeh !== undefined) {
+                        embed_document(root);
+                        clearInterval(timer);
+                      }
+                      attempts++;
+                      if (attempts > 100) {
+                        console.log("Bokeh: ERROR: Unable to run BokehJS code because BokehJS library is missing")
+                        clearInterval(timer);
+                      }
+                    }, 10, root)
+                  }
+                })(window);
+              });
+            };
+            if (document.readyState != "loading") fn();
+            else document.addEventListener("DOMContentLoaded", fn);
+          })();
+        </script>
+    </body>
+</html>
