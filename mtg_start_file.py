@@ -64,7 +64,7 @@ def check_hand(hand, mana, deck, games, player, evos=0):
             return mulligan(deck, mana, cc, games, player, evos)
 
 
-def open_hand(cards, typemana, games, goes_first, player, evos=0):
+def open_hand(cards, typemana, games, player, evos=0):
     this_deck = create_deck(cards, typemana, evos)
     a_hand = create_hand(this_deck, 7)
     manad = check_hand(a_hand, typemana, this_deck, games, player, evos)
@@ -80,7 +80,7 @@ def open_hand(cards, typemana, games, goes_first, player, evos=0):
 
 def establish_field(cc, type_mana, games, goes_first, player, evos=0):
     try:
-        player_stats = open_hand(cc, type_mana, games, goes_first, player, evos)
+        player_stats = open_hand(cc, type_mana, games, player, evos)
         field = []
         player_stats.append(field)
         graveyard = []

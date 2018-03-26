@@ -1,0 +1,71 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Limited 3 Mana - Win Condition Stats</title>
+        
+<link rel="stylesheet" href="https://cdn.pydata.org/bokeh/release/bokeh-0.12.13.min.css" type="text/css" />
+        
+<script type="text/javascript" src="https://cdn.pydata.org/bokeh/release/bokeh-0.12.13.min.js"></script>
+<script type="text/javascript">
+    Bokeh.set_log_level("info");
+</script>
+        <style>
+          html {
+            width: 100%;
+            height: 100%;
+          }
+          body {
+            width: 90%;
+            height: 100%;
+            margin: auto;
+          }
+        </style>
+    </head>
+    <body>
+        
+        <div class="bk-root">
+            <div class="bk-plotdiv" id="f0df0397-bee4-470d-acbc-6778f2f1ae09"></div>
+        </div>
+        
+        <script type="application/json" id="7c58251b-b880-494f-a2bb-4a8426fa85eb">
+          {"82f1516b-8bde-4e35-88bb-85153186958c":{"roots":{"references":[{"attributes":{"active_drag":"auto","active_inspect":"auto","active_scroll":"auto","active_tap":"auto","tools":[{"id":"7cc079d5-91c9-4dfd-bfc6-df356af78596","type":"PanTool"},{"id":"25477841-2d34-4630-ba15-e1470e89cf20","type":"WheelZoomTool"},{"id":"cdb0f799-1185-46a3-ab76-57603720c5c3","type":"BoxZoomTool"},{"id":"9f151678-703c-4857-a0e5-fd29817e3df6","type":"ResetTool"},{"id":"76bfcc5d-2a5f-4202-9c7c-3c7991836573","type":"HoverTool"},{"id":"0c5967f4-503e-4ce3-9551-9edc7ececa8d","type":"SaveTool"}]},"id":"b8ed49e4-75a7-456b-8bd8-60ed37a4375c","type":"Toolbar"},{"attributes":{"plot":{"id":"422a382a-83a9-4114-ad9a-9de50c12a81e","subtype":"Figure","type":"Plot"},"ticker":{"id":"1aaae014-868b-4424-9981-9a8f58a33277","type":"BasicTicker"}},"id":"a314731f-23da-42a0-b3d2-d5f68afcfd10","type":"Grid"},{"attributes":{},"id":"1aaae014-868b-4424-9981-9a8f58a33277","type":"BasicTicker"},{"attributes":{},"id":"6d3bc26b-6f68-47c7-9a7e-829de49df13c","type":"LinearScale"},{"attributes":{},"id":"7b11331f-9967-4c54-a131-1d29ec7e7d91","type":"LinearScale"},{"attributes":{},"id":"25477841-2d34-4630-ba15-e1470e89cf20","type":"WheelZoomTool"},{"attributes":{"dimension":1,"plot":{"id":"422a382a-83a9-4114-ad9a-9de50c12a81e","subtype":"Figure","type":"Plot"},"ticker":{"id":"1f4eed32-f6f4-4958-9b30-5946795083fc","type":"BasicTicker"}},"id":"f12880a2-675e-40b4-b2f5-d0525aa26064","type":"Grid"},{"attributes":{},"id":"1f4eed32-f6f4-4958-9b30-5946795083fc","type":"BasicTicker"},{"attributes":{},"id":"7cc079d5-91c9-4dfd-bfc6-df356af78596","type":"PanTool"},{"attributes":{"overlay":{"id":"6edb9e91-e55f-4235-bc31-17bafbc0d60d","type":"BoxAnnotation"}},"id":"cdb0f799-1185-46a3-ab76-57603720c5c3","type":"BoxZoomTool"},{"attributes":{},"id":"9f151678-703c-4857-a0e5-fd29817e3df6","type":"ResetTool"},{"attributes":{"callback":null,"tooltips":[["Name","@name"],["Percentage Won","@amount"]]},"id":"76bfcc5d-2a5f-4202-9c7c-3c7991836573","type":"HoverTool"},{"attributes":{"bottom_units":"screen","fill_alpha":{"value":0.5},"fill_color":{"value":"lightgrey"},"left_units":"screen","level":"overlay","line_alpha":{"value":1.0},"line_color":{"value":"black"},"line_dash":[4,4],"line_width":{"value":2},"plot":null,"render_mode":"css","right_units":"screen","top_units":"screen"},"id":"6edb9e91-e55f-4235-bc31-17bafbc0d60d","type":"BoxAnnotation"},{"attributes":{"label":{"field":"name"},"renderers":[{"id":"ae616f74-e002-46a6-9805-edc280823f16","type":"GlyphRenderer"}]},"id":"c3891a3c-656e-498d-8f6f-c785c70edfa2","type":"LegendItem"},{"attributes":{},"id":"0c5967f4-503e-4ce3-9551-9edc7ececa8d","type":"SaveTool"},{"attributes":{"source":{"id":"e36c1ab8-a2dc-41ab-a881-8994fd62bf0b","type":"ColumnDataSource"}},"id":"bef90652-04e9-469e-82f9-4c09ae49877d","type":"CDSView"},{"attributes":{"plot":null,"text":"Limited Win Condition Percentage","text_font_size":{"value":"24px"}},"id":"b322aa48-2a57-4bbc-bec4-c1ac6faa979f","type":"Title"},{"attributes":{"callback":null,"end":1.25,"start":-1.25},"id":"46814f6e-ba6c-48ac-8946-02d30e6fe3a6","type":"Range1d"},{"attributes":{"items":[{"id":"c3891a3c-656e-498d-8f6f-c785c70edfa2","type":"LegendItem"}],"plot":{"id":"422a382a-83a9-4114-ad9a-9de50c12a81e","subtype":"Figure","type":"Plot"}},"id":"56b6d3f0-6274-408f-af83-1a2961867ea4","type":"Legend"},{"attributes":{"renderers":[{"id":"a314731f-23da-42a0-b3d2-d5f68afcfd10","type":"Grid"},{"id":"f12880a2-675e-40b4-b2f5-d0525aa26064","type":"Grid"},{"id":"6edb9e91-e55f-4235-bc31-17bafbc0d60d","type":"BoxAnnotation"},{"id":"56b6d3f0-6274-408f-af83-1a2961867ea4","type":"Legend"},{"id":"ae616f74-e002-46a6-9805-edc280823f16","type":"GlyphRenderer"}],"title":{"id":"b322aa48-2a57-4bbc-bec4-c1ac6faa979f","type":"Title"},"toolbar":{"id":"b8ed49e4-75a7-456b-8bd8-60ed37a4375c","type":"Toolbar"},"x_range":{"id":"554edd71-3573-4c40-af2f-f7497579ce7c","type":"Range1d"},"x_scale":{"id":"7b11331f-9967-4c54-a131-1d29ec7e7d91","type":"LinearScale"},"y_range":{"id":"46814f6e-ba6c-48ac-8946-02d30e6fe3a6","type":"Range1d"},"y_scale":{"id":"6d3bc26b-6f68-47c7-9a7e-829de49df13c","type":"LinearScale"}},"id":"422a382a-83a9-4114-ad9a-9de50c12a81e","subtype":"Figure","type":"Plot"},{"attributes":{"end_angle":{"field":"ends","units":"rad"},"fill_alpha":{"value":0.1},"fill_color":{"value":"#1f77b4"},"line_alpha":{"value":0.1},"line_color":{"value":"#1f77b4"},"radius":{"units":"data","value":1},"start_angle":{"field":"starts","units":"rad"},"x":{"value":0},"y":{"value":0}},"id":"6f3de7ad-c45e-4348-88ca-42cfcbc615c6","type":"Wedge"},{"attributes":{"callback":null,"end":1.25,"start":-1.25},"id":"554edd71-3573-4c40-af2f-f7497579ce7c","type":"Range1d"},{"attributes":{"end_angle":{"field":"ends","units":"rad"},"fill_color":{"field":"color"},"line_color":{"field":"color"},"radius":{"units":"data","value":1},"start_angle":{"field":"starts","units":"rad"},"x":{"value":0},"y":{"value":0}},"id":"a840285d-d4c8-4a4e-af05-2c6225477400","type":"Wedge"},{"attributes":{"callback":null,"column_names":["starts","ends","color","name","amount"],"data":{"amount":[["9%"],["9%"],["82%"]],"color":["red","blue","yellow"],"ends":[0.5654866776461628,1.1309733552923256,6.283185307179586],"name":["Wins Due to No Mana","Wins By Mill","Wins By Combat"],"starts":[0.0,0.5654866776461628,1.1309733552923256]}},"id":"e36c1ab8-a2dc-41ab-a881-8994fd62bf0b","type":"ColumnDataSource"},{"attributes":{"data_source":{"id":"e36c1ab8-a2dc-41ab-a881-8994fd62bf0b","type":"ColumnDataSource"},"glyph":{"id":"a840285d-d4c8-4a4e-af05-2c6225477400","type":"Wedge"},"hover_glyph":null,"muted_glyph":null,"nonselection_glyph":{"id":"6f3de7ad-c45e-4348-88ca-42cfcbc615c6","type":"Wedge"},"selection_glyph":null,"view":{"id":"bef90652-04e9-469e-82f9-4c09ae49877d","type":"CDSView"}},"id":"ae616f74-e002-46a6-9805-edc280823f16","type":"GlyphRenderer"}],"root_ids":["422a382a-83a9-4114-ad9a-9de50c12a81e"]},"title":"Bokeh Application","version":"0.12.13"}}
+        </script>
+        <script type="text/javascript">
+          (function() {
+            var fn = function() {
+              Bokeh.safely(function() {
+                (function(root) {
+                  function embed_document(root) {
+                    
+                  var docs_json = document.getElementById('7c58251b-b880-494f-a2bb-4a8426fa85eb').textContent;
+                  var render_items = [{"docid":"82f1516b-8bde-4e35-88bb-85153186958c","elementid":"f0df0397-bee4-470d-acbc-6778f2f1ae09","modelid":"422a382a-83a9-4114-ad9a-9de50c12a81e"}];
+                  root.Bokeh.embed.embed_items(docs_json, render_items);
+                
+                  }
+                  if (root.Bokeh !== undefined) {
+                    embed_document(root);
+                  } else {
+                    var attempts = 0;
+                    var timer = setInterval(function(root) {
+                      if (root.Bokeh !== undefined) {
+                        embed_document(root);
+                        clearInterval(timer);
+                      }
+                      attempts++;
+                      if (attempts > 100) {
+                        console.log("Bokeh: ERROR: Unable to run BokehJS code because BokehJS library is missing")
+                        clearInterval(timer);
+                      }
+                    }, 10, root)
+                  }
+                })(window);
+              });
+            };
+            if (document.readyState != "loading") fn();
+            else document.addEventListener("DOMContentLoaded", fn);
+          })();
+        </script>
+    </body>
+</html>

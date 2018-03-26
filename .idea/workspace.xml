@@ -2,18 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6e4bc712-e27b-476f-b8d4-be3e0a9e6ad8" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/js_on_change.html" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DrawCon.db" afterPath="$PROJECT_DIR$/DrawCon.db" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/First_blood.db" afterPath="$PROJECT_DIR$/First_blood.db" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Mana_starved.db" afterPath="$PROJECT_DIR$/Mana_starved.db" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Open_hands.db" afterPath="$PROJECT_DIR$/Open_hands.db" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Who_wins.db" afterPath="$PROJECT_DIR$/Who_wins.db" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/PiGraph.ipynb" afterPath="$PROJECT_DIR$/PiGraph.ipynb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/collect_stats.py" afterPath="$PROJECT_DIR$/collect_stats.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db_classes.py" afterPath="$PROJECT_DIR$/db_classes.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mtg_start_file.py" afterPath="$PROJECT_DIR$/mtg_start_file.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pie.html" afterPath="$PROJECT_DIR$/pie.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/play_the_game_output.py" afterPath="$PROJECT_DIR$/play_the_game_output.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -31,18 +27,18 @@
       <file leaf-file-name="collect_stats.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/collect_stats.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="11" column="83" lean-forward="true" selection-start-line="11" selection-start-column="83" selection-end-line="11" selection-end-column="83" />
+            <state relative-caret-position="17">
+              <caret line="11" column="83" lean-forward="false" selection-start-line="11" selection-start-column="83" selection-end-line="11" selection-end-column="83" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="db_classes.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="db_classes.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/db_classes.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="549">
-              <caret line="76" column="30" lean-forward="true" selection-start-line="76" selection-start-column="30" selection-end-line="76" selection-end-column="30" />
+            <state relative-caret-position="393">
+              <caret line="77" column="0" lean-forward="true" selection-start-line="77" selection-start-column="0" selection-end-line="77" selection-end-column="0" />
               <folding>
                 <element signature="e#0#49#0" expanded="true" />
               </folding>
@@ -50,11 +46,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="play_the_game_output.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="play_the_game_output.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/play_the_game_output.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="425">
-              <caret line="287" column="56" lean-forward="false" selection-start-line="287" selection-start-column="56" selection-end-line="287" selection-end-column="56" />
+            <state relative-caret-position="413">
+              <caret line="340" column="13" lean-forward="false" selection-start-line="340" selection-start-column="13" selection-end-line="346" selection-end-column="95" />
               <folding />
             </state>
           </provider>
@@ -63,8 +59,8 @@
       <file leaf-file-name="mtg_start_file.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/mtg_start_file.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1">
-              <caret line="0" column="0" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <state relative-caret-position="325">
+              <caret line="104" column="0" lean-forward="true" selection-start-line="104" selection-start-column="0" selection-end-line="104" selection-end-column="0" />
               <folding>
                 <element signature="e#0#24#0" expanded="true" />
               </folding>
@@ -83,8 +79,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>check_snap</find>
-      <find>78</find>
       <find>90</find>
       <find>10</find>
       <find>11</find>
@@ -113,6 +107,8 @@
       <find>91</find>
       <find>direct</find>
       <find>NoMana</find>
+      <find>land</find>
+      <find>play_land</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -128,10 +124,10 @@
         <option value="$PROJECT_DIR$/../../PythonCodeLouisvilleProject/Python/output/us_tots_classes.py" />
         <option value="$PROJECT_DIR$/../../PythonCodeLouisvilleProject/Python/input/areas_by_region.py" />
         <option value="$PROJECT_DIR$/to_database.py" />
-        <option value="$PROJECT_DIR$/mtg_start_file.py" />
-        <option value="$PROJECT_DIR$/play_the_game_output.py" />
         <option value="$PROJECT_DIR$/collect_stats.py" />
+        <option value="$PROJECT_DIR$/mtg_start_file.py" />
         <option value="$PROJECT_DIR$/db_classes.py" />
+        <option value="$PROJECT_DIR$/play_the_game_output.py" />
       </list>
     </option>
   </component>
@@ -156,7 +152,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
       <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
@@ -172,6 +167,7 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -754,41 +750,34 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/mtgSpells.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="116">
-          <caret line="51" column="36" lean-forward="true" selection-start-line="51" selection-start-column="36" selection-end-line="51" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/to_database.py" />
-    <entry file="file://$PROJECT_DIR$/mtg_evo_wilds_stats.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="146" column="0" lean-forward="true" selection-start-line="146" selection-start-column="0" selection-end-line="146" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/play_the_game_output.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="287" column="56" lean-forward="false" selection-start-line="287" selection-start-column="56" selection-end-line="287" selection-end-column="56" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/mtgClasses.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="291">
           <caret line="101" column="0" lean-forward="false" selection-start-line="101" selection-start-column="0" selection-end-line="101" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mtgSpells.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2276">
+          <caret line="104" column="8" lean-forward="false" selection-start-line="104" selection-start-column="4" selection-end-line="104" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mtg_evo_wilds_stats.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-797">
+          <caret line="4" column="13" lean-forward="false" selection-start-line="4" selection-start-column="4" selection-end-line="4" selection-end-column="13" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/mtg_start_file.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1">
-          <caret line="0" column="0" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state relative-caret-position="325">
+          <caret line="104" column="0" lean-forward="true" selection-start-line="104" selection-start-column="0" selection-end-line="104" selection-end-column="0" />
           <folding>
             <element signature="e#0#24#0" expanded="true" />
           </folding>
@@ -797,19 +786,27 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/collect_stats.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" column="83" lean-forward="true" selection-start-line="11" selection-start-column="83" selection-end-line="11" selection-end-column="83" />
+        <state relative-caret-position="17">
+          <caret line="11" column="83" lean-forward="false" selection-start-line="11" selection-start-column="83" selection-end-line="11" selection-end-column="83" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/db_classes.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="549">
-          <caret line="76" column="30" lean-forward="true" selection-start-line="76" selection-start-column="30" selection-end-line="76" selection-end-column="30" />
+        <state relative-caret-position="393">
+          <caret line="77" column="0" lean-forward="true" selection-start-line="77" selection-start-column="0" selection-end-line="77" selection-end-column="0" />
           <folding>
             <element signature="e#0#49#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/play_the_game_output.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="413">
+          <caret line="340" column="13" lean-forward="false" selection-start-line="340" selection-start-column="13" selection-end-line="346" selection-end-column="95" />
+          <folding />
         </state>
       </provider>
     </entry>
