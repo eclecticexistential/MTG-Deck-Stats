@@ -4,12 +4,19 @@ from collect_stats import get_open_hand_stats, get_first_blood_stats, get_mana_s
 
 
 class Game:
-    def __init__(self, cc, mana, evos, special_options=None):
+    def __init__(self, cc, mana, num_lands, removal, life_gain, tutor, draw_cards, combat_tricks, lil, bombs, evos):
         self.cc = cc
         self.mana = mana
+        self.num_lands = num_lands
+        self.removal = removal
+        self.life_gain = life_gain
+        self.tutor = tutor
+        self.draw_cards = draw_cards
+        self.combat_tricks = combat_tricks
+        self.lil = lil
+        self.bombs = bombs
         self.evos = evos
-        self.special_ops = special_options  #  for deck customization later
-        self.start_game = out_of_all_games(self.cc, self.mana, self.evos)
+        self.start_game = out_of_all_games(self.cc, self.mana, self.num_lands, self.removal, self.life_gain, self.tutor, self.draw_cards, self.combat_tricks, self.lil, self.bombs, self.evos)
 
     def open_hand(self):
         for data in get_open_hand_stats():
@@ -74,4 +81,6 @@ def provide_winner_insight(data, ww=None, wwf=None, wm=None, wr=None, ds=None):
         return data.draw_steps()
 
 # print(list(provide_winner_insight(Game(40, 2, 2), ds=True)))
-# limit_3m_3e = Game(40, 3, 3)
+# limit_3m_3e = Game(40, 3, 3)creatures=Creatures(lil=15, bombs=15,))))
+commander_2m = Game(100, 3, 30, 10, 2, 8, 10, 10, 15, 15, 2)
+

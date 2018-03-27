@@ -275,7 +275,7 @@ def status():
     return goes_first
 
 
-def out_of_all_games(cc, mana, evo):
+def out_of_all_games(cc, mana, num_lands, removal, life_gain, tutor, draw_cards, combat_tricks, lil, bombs, evo):
     evo_wilds_wins = 0
     non_evo_wins = 0
     ties = 0
@@ -285,13 +285,13 @@ def out_of_all_games(cc, mana, evo):
     while games >= 1:
         goes_first = status()
         if goes_first == 0:
-            player_one = establish_field(cc, mana, games, goes_first, "P1", evo)
+            player_one = establish_field(cc, mana, games, goes_first, "P1", num_lands, removal, life_gain, tutor, draw_cards, combat_tricks, lil, bombs, evo)
             if player_one is False:
                 non_evo_wins += 1
                 non_evo_draw_steps.append(0)
                 games -= 1
             elif player_one:
-                player_two = establish_field(cc, mana, games, goes_first, "P2")
+                player_two = establish_field(cc, mana, games, goes_first, "P2", num_lands, removal, life_gain, tutor, draw_cards, combat_tricks, lil, bombs,)
                 if player_two is False:
                     evo_wilds_wins += 1
                     evo_draw_steps.append(0)
@@ -310,18 +310,18 @@ def out_of_all_games(cc, mana, evo):
                     # print("Non-Evo wins {}".format(games))
                     games -= 1
         if goes_first == 1:
-            player_two = establish_field(cc, mana, games, goes_first, "P2")
+            player_two = establish_field(cc, mana, games, goes_first, "P2", num_lands, removal, life_gain, tutor, draw_cards, combat_tricks, lil, bombs)
             if player_two is False:
                 evo_wilds_wins += 1
                 evo_draw_steps.append(0)
                 games -= 1
             elif player_two:
-                player_one = establish_field(cc, mana, games, goes_first, "P1", evo)
+                player_one = establish_field(cc, mana, games, goes_first, "P1", num_lands, removal, life_gain, tutor, draw_cards, combat_tricks, lil, bombs, evo)
                 if player_one is False:
                     non_evo_wins += 1
                     non_evo_draw_steps.append(0)
                     games -= 1
-            if player_one and player_two:
+            if player_two and player_one:
                 winner = play_the_game(player_one, player_two, mana, goes_first, games)
                 # appends num of draws into win condition if player won
                 if winner[0] == "P1" and winner[1] != 0:
@@ -338,11 +338,11 @@ def out_of_all_games(cc, mana, evo):
     evo_totes = sum(evo_draw_steps)/len(evo_draw_steps)
     non_evo_totes = sum(non_evo_draw_steps)/len(non_evo_draw_steps)
     game_stats(0, 'all', 0, 100, hand=None, method=None, winner=None, goes_first=None, draws=[evo_totes, non_evo_totes])
-    # print()
-    # print("Stats for {} Mana Limited Deck \n".format(mana))
-    # print("Evo Deck Wins {}".format(evo_wilds_wins))
-    # print("Non Evo Deck Wins {}".format(non_evo_wins))
-    # print("Ties to Win {}".format(ties))
-    # print("With Evolving Wilds: {} Cards Drawn Into Win Condition.".format(evo_totes))
-    # print("Without Evolving Wilds: {} Cards Drawn Into Win Condition.".format(non_evo_totes))
+    print()
+    print("Stats for {} Mana Limited Deck \n".format(mana))
+    print("Evo Deck Wins {}".format(evo_wilds_wins))
+    print("Non Evo Deck Wins {}".format(non_evo_wins))
+    print("Ties to Win {}".format(ties))
+    print("With Evolving Wilds: {} Cards Drawn Into Win Condition.".format(evo_totes))
+    print("Without Evolving Wilds: {} Cards Drawn Into Win Condition.".format(non_evo_totes))
 
