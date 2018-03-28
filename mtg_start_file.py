@@ -8,10 +8,14 @@ def dice():
 
 def create_deck(cards, type_mana, num_lands, removal, life_gain, tutor, draw_cards, combat_tricks, lil, bombs, evos=0):
     if evos != 0:
-        evo = Deck(cards, Mana(land_type=type_mana, num_lands=num_lands, evo=evos), Spells(removal=removal, life_gain=life_gain, tutor=tutor, draw_cards=draw_cards, combat_tricks=combat_tricks), Creatures(lil=lil, bombs=bombs))
+        evo = Deck(cards, Mana(land_type=type_mana, num_lands=num_lands, evo=evos),
+                   Spells(removal=removal, life_gain=life_gain, tutor=tutor, draw_cards=draw_cards,
+                          combat_tricks=combat_tricks), Creatures(lil=lil, bombs=bombs))
         return evo
     elif evos == 0:
-        non_evo = Deck(cards, Mana(land_type=type_mana, num_lands=num_lands), Spells(removal=removal, life_gain=life_gain, tutor=tutor, draw_cards=draw_cards, combat_tricks=combat_tricks), Creatures(lil=lil, bombs=bombs))
+        non_evo = Deck(cards, Mana(land_type=type_mana, num_lands=num_lands),
+                       Spells(removal=removal, life_gain=life_gain, tutor=tutor, draw_cards=draw_cards,
+                              combat_tricks=combat_tricks), Creatures(lil=lil, bombs=bombs))
         return non_evo
 
 

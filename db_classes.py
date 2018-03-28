@@ -16,7 +16,8 @@ class Game:
         self.lil = lil
         self.bombs = bombs
         self.evos = evos
-        self.start_game = out_of_all_games(self.cc, self.mana, self.num_lands, self.removal, self.life_gain, self.tutor, self.draw_cards, self.combat_tricks, self.lil, self.bombs, self.evos)
+        self.start_game = out_of_all_games(self.cc, self.mana, self.num_lands, self.removal, self.life_gain, self.tutor,
+                                           self.draw_cards, self.combat_tricks, self.lil, self.bombs, self.evos)
 
     def open_hand(self):
         for data in get_open_hand_stats():
@@ -77,10 +78,22 @@ def provide_winner_insight(data, ww=None, wwf=None, wm=None, wr=None, ds=None):
         return win_by_combat/100, win_by_no_mana/100, win_by_milled/100
     if wr:
         return sum(winning_round)/len(winning_round)
-    if ds:
+    if ds:  # needs work
         return data.draw_steps()
 
-# print(list(provide_winner_insight(Game(40, 2, 2), ds=True)))
-# limit_3m_3e = Game(40, 3, 3)creatures=Creatures(lil=15, bombs=15,))))
-commander_2m = Game(100, 3, 30, 10, 2, 8, 10, 10, 15, 15, 2)
-
+# cc, mana, num_lands, removal, life_gain, tutor, draw_cards, combat_tricks, lil, bombs, evos
+# commander_3m = Game(100, 3, 36, 10, 2, 7, 10, 10, 10, 15, 2)
+# print(provide_winner_insight(commander_3m, ww=True))
+# print(provide_winner_insight(commander_3m, wwf=True))
+# print(provide_winner_insight(commander_3m, wm=True))
+# print(provide_winner_insight(commander_3m, wr=True))
+# limited3m = Game(40, 3, 17, 4, 2, 2, 2, 3, 8, 2, 3)
+# print(provide_winner_insight(limited3m, ww=True))
+# print(provide_winner_insight(limited3m, wwf=True))
+# print(provide_winner_insight(limited3m, wm=True))
+# print(provide_winner_insight(limited3m, wr=True))
+# limited2m = Game(40, 2, 17, 4, 2, 2, 2, 3, 8, 2, 2)
+# print(provide_winner_insight(limited2m, ww=True))
+# print(provide_winner_insight(limited2m, wwf=True))
+# print(provide_winner_insight(limited2m, wm=True))
+# print(provide_winner_insight(limited2m, wr=True))

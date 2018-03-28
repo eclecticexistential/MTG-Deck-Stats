@@ -175,22 +175,6 @@ def check_snap_shot(x, field):
         return 1
 
 
-def take_turn(deck, hand, graveyard, untapped_mana, opp_field, opp_graveyard, player, life, opp_life, mana):
-    if 13 in hand:
-        direct_damage(hand, graveyard, untapped_mana, opp_life, mana)
-    if 18 in hand and 8 in opp_field or 77 in opp_field:
-        return removal(hand, opp_field, graveyard, opp_graveyard, untapped_mana, mana, player)
-    if len(hand) < 7:
-        if 17 in hand:
-            return draw_card(deck, hand, graveyard, mana, untapped_mana)
-    if life >= 3 and 66 in hand and len(hand) < 6:
-        return tutor(hand, deck, graveyard, untapped_mana, life, mana)
-    if 9 in hand:
-        return life_gain(hand, graveyard, untapped_mana, life, mana)
-    else:
-        return
-
-
 def combat_phase(p1_field, p1_life_total, p1_turns, p1_deck, p2_field, p2_life_total, p2_turns, p2_deck, no_summoning_sickness, player):
     p1_creatures = check_creatures(p1_field)
     p2_creatures = check_creatures(p2_field)

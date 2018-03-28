@@ -10,7 +10,7 @@ def draw(deck, hand):
     hand.append(a)
     return [deck, hand]
 
-#include life
+
 def tutor(hand, deck, graveyard, untapped_mana, life, mana):
     land1 = untapped_mana[0]
     land2 = untapped_mana[1]
@@ -49,7 +49,7 @@ def tutor(hand, deck, graveyard, untapped_mana, life, mana):
                     # print("tutored")
                     return life, untapped_mana
 
-# put first blood stats lightning bolt in
+
 def direct_damage(hand, graveyard, untapped_mana, opp_life, mana):
     land1 = untapped_mana[0]
     land2 = untapped_mana[1]
@@ -63,7 +63,7 @@ def direct_damage(hand, graveyard, untapped_mana, opp_life, mana):
                 untapped_mana[1] -= 1
                 # print("direct damage")
                 opp_life -= 3
-                return untapped_mana
+                return opp_life, untapped_mana
         if mana == 3:
             if land1 >= 1 and land2 >= 1 or land2 >= 1 and land3 >= 1 or land1 >= 1 and land3 >= 1:
                 graveyard.append(13)
@@ -166,7 +166,7 @@ def removal(hand, field, p1_graveyard, p2_graveyard, untapped_mana, mana, player
                         p2_graveyard.append(18)
                     # print("77 was removed")
                     return untapped_mana
-        elif 8 in field:
+        if 8 in field:
             if mana == 2:
                 if land1 >= 1 and land2 >= 1:
                     field.remove(8)
