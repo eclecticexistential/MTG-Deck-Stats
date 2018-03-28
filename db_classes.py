@@ -82,8 +82,8 @@ def provide_winner_insight(data, ww=None, wwf=None, wm=None, wr=None, ds=None):
         return data.draw_steps()
 
 # cc, mana, num_lands, removal, life_gain, tutor, draw_cards, combat_tricks, lil, bombs, evos
-# commander_3m = Game(100, 3, 36, 10, 2, 7, 10, 10, 10, 15, 2)
-# print(provide_winner_insight(commander_3m, ww=True))
+commander_3m = Game(100, 3, 36, 10, 2, 7, 10, 10, 10, 15, 4)
+print(provide_winner_insight(commander_3m, ww=True))
 # print(provide_winner_insight(commander_3m, wwf=True))
 # print(provide_winner_insight(commander_3m, wm=True))
 # print(provide_winner_insight(commander_3m, wr=True))
@@ -97,3 +97,6 @@ def provide_winner_insight(data, ww=None, wwf=None, wm=None, wr=None, ds=None):
 # print(provide_winner_insight(limited2m, wwf=True))
 # print(provide_winner_insight(limited2m, wm=True))
 # print(provide_winner_insight(limited2m, wr=True))
+
+# commander_2m = Game(100, 2, 36, 10, 2, 7, 10, 10, 10, 15, 4)
+# print(provide_winner_insight(commander_2m, ww=True))

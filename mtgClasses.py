@@ -15,11 +15,13 @@ class Mana:
         for z in range(evo):
             self.mana.append(10)
         for y in range(self.land_type):
-            for x in range(self.totals-1):
+            for x in range(self.totals-evo):
                 self.mana.append(m_types[y])
         while len(self.mana) != num_lands:
             rando = random.randint(0, self.land_type-1)
             self.mana.append(m_types[rando])
+
+
 
     def __iter__(self):
         for lands in self.mana:

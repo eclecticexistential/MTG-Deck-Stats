@@ -45,7 +45,7 @@ def check_hand(hand, mana, deck, games, player, evos=0):
             game_stats(0, player, mana, games, hand, method=None, winner=None, goes_first=None)
             return hand
     elif mana == 2:
-        if a == 0 and b > 0 or a > 0 and b == 0:
+        if a == 0 and b > 0 or a > 0 and b == 0 or evo_in_hand > 1:
             if evo_in_hand > 0:
                 game_stats(0, player, mana, games, hand, method=None, winner=None, goes_first=None)
                 return hand
@@ -57,7 +57,7 @@ def check_hand(hand, mana, deck, games, player, evos=0):
             return hand
     elif mana == 3:
         if evo_in_hand > 0:
-            if a == 0 and b > 0 and c > 0 or a > 0 and b == 0 and c > 0 or a > 0 and b > 0 and c == 0:
+            if a == 0 and b > 0 and c > 0 or a > 0 and b == 0 and c > 0 or a > 0 and b > 0 and c == 0 or evo_in_hand > 2:
                 game_stats(0, player, mana, games, hand, method=None, winner=None, goes_first=None)
                 return hand
         elif evo_in_hand == 0:
