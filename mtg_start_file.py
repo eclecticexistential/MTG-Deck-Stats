@@ -93,6 +93,7 @@ def establish_field(cc, type_mana, games, goes_first, player, num_lands, removal
 
 
 def hand_check(hand, graveyard):
+    # take_turn(deck, hand, graveyard, untapped_mana, opp_field, opp_graveyard, player, life, mana
     # discards a 1 to take into account creatures/spells that are played during each round
     if len(hand) > 7:
         if 8 in hand:

@@ -52,7 +52,7 @@ class Creatures:
             raise ValueError("You're going to need some creatures")
         self.lil = lil
         self.bombs = bombs
-        self.total_creatures = {8: lil, 88: bombs}
+        self.total_creatures = {8: lil, 77: bombs}
         self.creatures = []
         for value in self.total_creatures:
             for _ in range(self.total_creatures[value]):

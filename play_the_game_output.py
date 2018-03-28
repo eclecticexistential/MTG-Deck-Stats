@@ -11,7 +11,6 @@ def play_the_game(player_one, player_two, mana, goes_first, game_num):
     p2_ss = []
     p1_life = 20
     p2_life = 20
-    round_start = 0
     ticker = 0
     method = ""
 # taking turns... goes_first determines who plays first
@@ -34,10 +33,10 @@ def play_the_game(player_one, player_two, mana, goes_first, game_num):
                            winner=True, goes_first=goes_first)
                 return stats
 
-            p1start_num_creatures = p1_field.count(8)
+            p1start_num_creatures = p1_field.count(8) + p1_field.count(77)
             p1_hand, p1_deck, p1_field, p1add_to, p1untapped_mana = main_phase(p1new_hand, p1new_deck,
                                                                                p1_field, p1_grave, mana)
-            p1now_num_creatures = p1_field.count(8)
+            p1now_num_creatures = p1_field.count(8) + p1_field.count(77)
             p1no_summoning_sickness = p1start_num_creatures - p1now_num_creatures
 
             p1_ss.append(p1add_to)
@@ -48,19 +47,36 @@ def play_the_game(player_one, player_two, mana, goes_first, game_num):
                            method="ManaStarved", winner=True, goes_first=goes_first)
                 return stats
             if p1untapped_mana is not None:
+                # print(p1untapped_mana)
                 p1current = p1untapped_mana[0] + p1untapped_mana[1] + p1untapped_mana[2]
                 if p1current > 0:
-                    hit = take_turn(p1_deck, p1_hand, p1_grave, p1untapped_mana, p2_field, p2_grave,
-                                    "P2", p1_life, mana)
-                    if hit == 3:
-                        p2_life -= 3
-                        if ticker == 0:
-                            method = "Lightning Bolt"
-                            ticker += 1
-                    elif hit == 5:
-                        p1_life += 5
-                    elif hit == 2:
-                        p1_life -= 2
+                    if 13 in p1_hand:
+                        stats = direct_damage(p1_hand, p1_grave, p1untapped_mana, p2_life, mana)
+                        if stats is not None:
+                            if stats[0] != p2_life:
+                                p2_life = stats[0]
+                            if stats[1] != p1untapped_mana:
+                                p1untapped_mana = stats[1]
+                    if 18 in p1_hand and 8 in p2_field or 77 in p2_field:
+                        removal(p1_hand, p2_field, p1_grave, p2_grave, p1untapped_mana, mana, 'P1')
+                    if len(p1_hand) < 7:
+                        if 17 in p1_hand:
+                            draw_card(p1_deck, p1_hand, p1_grave, mana, p1untapped_mana)
+                    if p1_life >= 3 and 66 in p1_hand and len(p1_hand) < 6:
+                        stats = tutor(p1_hand, p1_deck, p1_grave, p1untapped_mana, p1_life, mana)
+                        if stats is not None:
+                            if stats[0] != p1_life:
+                                p1_life = stats[0]
+                            if stats[1] != p1untapped_mana:
+                                p1untapped_mana = stats[1]
+                    if 9 in p1_hand:
+                        stats = life_gain(p1_hand, p1_grave, p1untapped_mana, p1_life, mana)
+                        if stats is not None:
+                            if stats[1] != p1_life:
+                                p1_life = stats[0]
+                            if stats[1] != p1untapped_mana:
+                                p1untapped_mana = stats[1]
+
             if p1no_summoning_sickness > -1:
                 health = combat_phase(p1_field, p1_life, p1_turns, p1_deck, p2_field, p2_life, p2_turns, p2_deck,
                                       p1no_summoning_sickness, "P1")
@@ -76,6 +92,38 @@ def play_the_game(player_one, player_two, mana, goes_first, game_num):
                     game_stats(health[1], health[0], mana, game_num, hand=None, method="Combat",
                                winner=True, goes_first=goes_first)
                     return health
+
+            # main phase two
+            if p1untapped_mana is not None:
+                p1current = p1untapped_mana[0] + p1untapped_mana[1] + p1untapped_mana[2]
+                if p1current > 0:
+                    if 13 in p1_hand:
+                        stats = direct_damage(p1_hand, p1_grave, p1untapped_mana, p2_life, mana)
+                        if stats is not None:
+                            if stats[0] != p2_life:
+                                p2_life = stats[0]
+                            if stats[1] != p1untapped_mana:
+                                p1untapped_mana = stats[1]
+                    if 18 in p1_hand and 8 in p2_field or 77 in p2_field:
+                        removal(p1_hand, p2_field, p1_grave, p2_grave, p1untapped_mana, mana, 'P1')
+                    if len(p1_hand) < 7:
+                        if 17 in p1_hand:
+                            draw_card(p1_deck, p1_hand, p1_grave, mana, p1untapped_mana)
+                    if p1_life >= 3 and 66 in p1_hand and len(p1_hand) < 6:
+                        stats = tutor(p1_hand, p1_deck, p1_grave, p1untapped_mana, p1_life, mana)
+                        if stats is not None:
+                            if stats[0] != p1_life:
+                                p1_life = stats[0]
+                            if stats[1] != p1untapped_mana:
+                                p1untapped_mana = stats[1]
+                    if 9 in p1_hand:
+                        stats = life_gain(p1_hand, p1_grave, p1untapped_mana, p1_life, mana)
+                        if stats is not None:
+                            if stats[1] != p1_life:
+                                p1_life = stats[0]
+                            if stats[1] != p1untapped_mana:
+                                p1untapped_mana = stats[1]
+
             p1_turns += 1
             hand_check(p1_hand, p1_grave)
 
@@ -97,9 +145,9 @@ def play_the_game(player_one, player_two, mana, goes_first, game_num):
                            method="Milled", winner=True, goes_first=goes_first)
                 return stats
 
-            p2start_num_creatures = p2_field.count(8)
+            p2start_num_creatures = p2_field.count(8) + p2_field.count(77)
             p2_hand, p2_deck, p2_field, p2add_to, p2untapped_mana = main_phase(p2new_hand, p2new_deck, p2_field, p2_grave, mana)
-            p2now_num_creatures = p1_field.count(8)
+            p2now_num_creatures = p1_field.count(8) + p2_field.count(77)
             p2no_summoning_sickness = p2start_num_creatures - p2now_num_creatures
             p2_ss.append(p2add_to)
             mana_fed = check_snap_shot(p2_ss, p2_field)
@@ -111,16 +159,32 @@ def play_the_game(player_one, player_two, mana, goes_first, game_num):
             if p2untapped_mana is not None:
                 p2current = p2untapped_mana[0] + p2untapped_mana[1] + p2untapped_mana[2]
                 if p2current > 0:
-                    hit = take_turn(p2_deck, p2_hand, p2_grave, p2untapped_mana, p1_field, p1_grave, "P1", p2_life, mana)
-                    if hit == 3:
-                        p1_life -= 3
-                        if ticker == 0:
-                            method = "Lightning Bolt"
-                            ticker += 1
-                    elif hit == 5:
-                        p2_life += 5
-                    elif hit == 2:
-                        p2_life -= 2
+                    if 13 in p2_hand:
+                        stats = direct_damage(p2_hand, p2_grave, p2untapped_mana, p1_life, mana)
+                        if stats is not None:
+                            if stats[0] != p1_life:
+                                p1_life = stats[0]
+                            if stats[1] != p2untapped_mana:
+                                p2untapped_mana = stats[1]
+                    if 18 in p2_hand and 8 in p1_field or 77 in p1_field:
+                        removal(p2_hand, p1_field, p2_grave, p1_grave, p2untapped_mana, mana, 'P2')
+                    if len(p2_hand) < 7:
+                        if 17 in p2_hand:
+                            draw_card(p2_deck, p2_hand, p2_grave, mana, p2untapped_mana)
+                    if p2_life >= 3 and 66 in p2_hand and len(p2_hand) < 6:
+                        stats = tutor(p2_hand, p2_deck, p2_grave, p2untapped_mana, p2_life, mana)
+                        if stats is not None:
+                            if stats[0] != p2_life:
+                                p2_life = stats[0]
+                            if stats[1] != p2untapped_mana:
+                                p2untapped_mana = stats[1]
+                    if 9 in p2_hand:
+                        stats = life_gain(p2_hand, p2_grave, p2untapped_mana, p2_life, mana)
+                        if stats is not None:
+                            if stats[1] != p2_life:
+                                p2_life = stats[0]
+                            if stats[1] != p2untapped_mana:
+                                p2untapped_mana = stats[1]
             if p2no_summoning_sickness > -1:
                 health = combat_phase(p1_field, p1_life, p1_turns, p1_deck, p2_field, p2_life, p2_turns, p2_deck, p2no_summoning_sickness, "P2")
                 if health[0] != "P1" and health[0] != "P2":
@@ -135,6 +199,39 @@ def play_the_game(player_one, player_two, mana, goes_first, game_num):
                     game_stats(health[1], health[0], mana, game_num, hand=None, method="Combat", winner=True,
                                goes_first=goes_first)
                     return health
+
+            # main phase two
+
+            if p2untapped_mana is not None:
+                p2current = p2untapped_mana[0] + p2untapped_mana[1] + p2untapped_mana[2]
+                if p2current > 0:
+                    if 13 in p2_hand:
+                        stats = direct_damage(p2_hand, p2_grave, p2untapped_mana, p1_life, mana)
+                        if stats is not None:
+                            if stats[0] != p1_life:
+                                p1_life = stats[0]
+                            if stats[1] != p2untapped_mana:
+                                p2untapped_mana = stats[1]
+                    if 18 in p2_hand and 8 in p1_field or 77 in p1_field:
+                        removal(p2_hand, p1_field, p2_grave, p1_grave, p2untapped_mana, mana, 'P2')
+                    if len(p2_hand) < 7:
+                        if 17 in p2_hand:
+                            draw_card(p2_deck, p2_hand, p2_grave, mana, p2untapped_mana)
+                    if p2_life >= 3 and 66 in p2_hand and len(p2_hand) < 6:
+                        stats = tutor(p2_hand, p2_deck, p2_grave, p2untapped_mana, p2_life, mana)
+                        if stats is not None:
+                            if stats[0] != p2_life:
+                                p2_life = stats[0]
+                            if stats[1] != p2untapped_mana:
+                                p2untapped_mana = stats[1]
+                    if 9 in p2_hand:
+                        stats = life_gain(p2_hand, p2_grave, p2untapped_mana, p2_life, mana)
+                        if stats is not None:
+                            if stats[1] != p2_life:
+                                p2_life = stats[0]
+                            if stats[1] != p2untapped_mana:
+                                p2untapped_mana = stats[1]
+
             p2_turns += 1
             hand_check(p2_hand, p2_grave)
 
@@ -144,10 +241,10 @@ def play_the_game(player_one, player_two, mana, goes_first, game_num):
 
     if goes_first == 1:
         while True:
-            # print()
-            # print("Start of Round {}.".format(p2_turns +1))
-            # print("Player2 Field {} Hand {} Graveyard {} Life Total {}".format(p2_field, p2_hand, p2_grave, p2_life))
-            # print("Player1 Field {} Hand {} Graveyard {} Life Total {} ".format(p1_field, p1_hand, p1_grave, p1_life))
+            print()
+            print("Start of Round {}.".format(p2_turns +1))
+            print("Player2 Field {} Hand {} Graveyard {} Life Total {}".format(p2_field, p2_hand, p2_grave, p2_life))
+            print("Player1 Field {} Hand {} Graveyard {} Life Total {} ".format(p1_field, p1_hand, p1_grave, p1_life))
             try:
                 p2new_deck, p2new_hand = draw(p2_deck, p2_hand)
             except TypeError:
@@ -161,9 +258,9 @@ def play_the_game(player_one, player_two, mana, goes_first, game_num):
                            method="Milled", winner=True, goes_first=goes_first)
                 return stats
 
-            p2start_num_creatures = p2_field.count(8)
+            p2start_num_creatures = p2_field.count(8) + p2_field.count(77)
             p2_hand, p2_deck, p2_field, p2add_to, p2untapped_mana = main_phase(p2new_hand, p2new_deck, p2_field, p2_grave, mana)
-            p2now_num_creatures = p1_field.count(8)
+            p2now_num_creatures = p1_field.count(8) + p2_field.count(77)
             p2no_summoning_sickness = p2start_num_creatures - p2now_num_creatures
             p2_ss.append(p2add_to)
             mana_fed = check_snap_shot(p2_ss, p2_field)
@@ -175,16 +272,32 @@ def play_the_game(player_one, player_two, mana, goes_first, game_num):
             if p2untapped_mana is not None:
                 p2current = p2untapped_mana[0] + p2untapped_mana[1] + p2untapped_mana[2]
                 if p2current > 0:
-                    hit = take_turn(p2_deck, p2_hand, p2_grave, p2untapped_mana, p1_field, p1_grave, "P1", p2_life, mana)
-                    if hit == 3:
-                        p1_life -= 3
-                        if ticker == 0:
-                            method = "Lightning Bolt"
-                            ticker += 1
-                    elif hit == 5:
-                        p2_life += 5
-                    elif hit == 2:
-                        p2_life -= 2
+                    if 13 in p2_hand:
+                        stats = direct_damage(p2_hand, p2_grave, p2untapped_mana, p1_life, mana)
+                        if stats is not None:
+                            if stats[0] != p1_life:
+                                p1_life = stats[0]
+                            if stats[1] != p2untapped_mana:
+                                p2untapped_mana = stats[1]
+                    if 18 in p2_hand and 8 in p1_field or 77 in p1_field:
+                        removal(p2_hand, p1_field, p2_grave, p1_grave, p2untapped_mana, mana, 'P2')
+                    if len(p2_hand) < 7:
+                        if 17 in p2_hand:
+                            draw_card(p2_deck, p2_hand, p2_grave, mana, p2untapped_mana)
+                    if p2_life >= 3 and 66 in p2_hand and len(p2_hand) < 6:
+                        stats = tutor(p2_hand, p2_deck, p2_grave, p2untapped_mana, p2_life, mana)
+                        if stats is not None:
+                            if stats[0] != p2_life:
+                                p2_life = stats[0]
+                            if stats[1] != p2untapped_mana:
+                                p2untapped_mana = stats[1]
+                    if 9 in p2_hand:
+                        stats = life_gain(p2_hand, p2_grave, p2untapped_mana, p2_life, mana)
+                        if stats is not None:
+                            if stats[1] != p2_life:
+                                p2_life = stats[0]
+                            if stats[1] != p2untapped_mana:
+                                p2untapped_mana = stats[1]
             if p2no_summoning_sickness > -1:
                 health = combat_phase(p1_field, p1_life, p1_turns, p1_deck, p2_field, p2_life, p2_turns, p2_deck, p2no_summoning_sickness, "P2")
                 if health[0] != "P1" and health[0] != "P2":
@@ -199,6 +312,39 @@ def play_the_game(player_one, player_two, mana, goes_first, game_num):
                     game_stats(health[1], health[0], mana, game_num, hand=None, method="Combat", winner=True,
                                goes_first=goes_first)
                     return health
+
+             # main phase two
+
+            if p2untapped_mana is not None:
+                p2current = p2untapped_mana[0] + p2untapped_mana[1] + p2untapped_mana[2]
+                if p2current > 0:
+                    if 13 in p2_hand:
+                        stats = direct_damage(p2_hand, p2_grave, p2untapped_mana, p1_life, mana)
+                        if stats is not None:
+                            if stats[0] != p1_life:
+                                p1_life = stats[0]
+                            if stats[1] != p2untapped_mana:
+                                p2untapped_mana = stats[1]
+                    if 18 in p2_hand and 8 in p1_field or 77 in p1_field:
+                        removal(p2_hand, p1_field, p2_grave, p1_grave, p2untapped_mana, mana, 'P2')
+                    if len(p2_hand) < 7:
+                        if 17 in p2_hand:
+                            draw_card(p2_deck, p2_hand, p2_grave, mana, p2untapped_mana)
+                    if p2_life >= 3 and 66 in p2_hand and len(p2_hand) < 6:
+                        stats = tutor(p2_hand, p2_deck, p2_grave, p2untapped_mana, p2_life, mana)
+                        if stats is not None:
+                            if stats[0] != p2_life:
+                                p2_life = stats[0]
+                            if stats[1] != p2untapped_mana:
+                                p2untapped_mana = stats[1]
+                    if 9 in p2_hand:
+                        stats = life_gain(p2_hand, p2_grave, p2untapped_mana, p2_life, mana)
+                        if stats is not None:
+                            if stats[1] != p2_life:
+                                p2_life = stats[0]
+                            if stats[1] != p2untapped_mana:
+                                p2untapped_mana = stats[1]
+
             p2_turns += 1
             hand_check(p2_hand, p2_grave)
 
@@ -216,10 +362,10 @@ def play_the_game(player_one, player_two, mana, goes_first, game_num):
                            winner=True, goes_first=goes_first)
                 return stats
 
-            p1start_num_creatures = p1_field.count(8)
+            p1start_num_creatures = p1_field.count(8) + p1_field.count(77)
             p1_hand, p1_deck, p1_field, p1add_to, p1untapped_mana = main_phase(p1new_hand, p1new_deck,
                                                                                p1_field, p1_grave, mana)
-            p1now_num_creatures = p1_field.count(8)
+            p1now_num_creatures = p1_field.count(8) + p1_field.count(77)
             p1no_summoning_sickness = p1start_num_creatures - p1now_num_creatures
 
             p1_ss.append(p1add_to)
@@ -232,17 +378,32 @@ def play_the_game(player_one, player_two, mana, goes_first, game_num):
             if p1untapped_mana is not None:
                 p1current = p1untapped_mana[0] + p1untapped_mana[1] + p1untapped_mana[2]
                 if p1current > 0:
-                    hit = take_turn(p1_deck, p1_hand, p1_grave, p1untapped_mana, p2_field, p2_grave,
-                                    "P2", p1_life, mana)
-                    if hit == 3:
-                        p2_life -= 3
-                        if ticker == 0:
-                            method = "Lightning Bolt"
-                            ticker += 1
-                    elif hit == 5:
-                        p1_life += 5
-                    elif hit == 2:
-                        p1_life -= 2
+                    if 13 in p1_hand:
+                        stats = direct_damage(p1_hand, p1_grave, p1untapped_mana, p2_life, mana)
+                        if stats is not None:
+                            if stats[0] != p2_life:
+                                p2_life = stats[0]
+                            if stats[1] != p1untapped_mana:
+                                p1untapped_mana = stats[1]
+                    if 18 in p1_hand and 8 in p2_field or 77 in p2_field:
+                        removal(p1_hand, p2_field, p1_grave, p2_grave, p1untapped_mana, mana, 'P1')
+                    if len(p1_hand) < 7:
+                        if 17 in p1_hand:
+                            draw_card(p1_deck, p1_hand, p1_grave, mana, p1untapped_mana)
+                    if p1_life >= 3 and 66 in p1_hand and len(p1_hand) < 6:
+                        stats = tutor(p1_hand, p1_deck, p1_grave, p1untapped_mana, p1_life, mana)
+                        if stats is not None:
+                            if stats[0] != p1_life:
+                                p1_life = stats[0]
+                            if stats[1] != p1untapped_mana:
+                                p1untapped_mana = stats[1]
+                    if 9 in p1_hand:
+                        stats = life_gain(p1_hand, p1_grave, p1untapped_mana, p1_life, mana)
+                        if stats is not None:
+                            if stats[1] != p1_life:
+                                p1_life = stats[0]
+                            if stats[1] != p1untapped_mana:
+                                p1untapped_mana = stats[1]
             if p1no_summoning_sickness > -1:
                 health = combat_phase(p1_field, p1_life, p1_turns, p1_deck, p2_field, p2_life, p2_turns, p2_deck,
                                       p1no_summoning_sickness, "P1")
@@ -258,6 +419,38 @@ def play_the_game(player_one, player_two, mana, goes_first, game_num):
                     game_stats(health[1], health[0], mana, game_num, hand=None, method="Combat",
                                winner=True, goes_first=goes_first)
                     return health
+
+            # main phase two
+            if p1untapped_mana is not None:
+                p1current = p1untapped_mana[0] + p1untapped_mana[1] + p1untapped_mana[2]
+                if p1current > 0:
+                    if 13 in p1_hand:
+                        stats = direct_damage(p1_hand, p1_grave, p1untapped_mana, p2_life, mana)
+                        if stats is not None:
+                            if stats[0] != p2_life:
+                                p2_life = stats[0]
+                            if stats[1] != p1untapped_mana:
+                                p1untapped_mana = stats[1]
+                    if 18 in p1_hand and 8 in p2_field or 77 in p2_field:
+                        removal(p1_hand, p2_field, p1_grave, p2_grave, p1untapped_mana, mana, 'P1')
+                    if len(p1_hand) < 7:
+                        if 17 in p1_hand:
+                            draw_card(p1_deck, p1_hand, p1_grave, mana, p1untapped_mana)
+                    if p1_life >= 3 and 66 in p1_hand and len(p1_hand) < 6:
+                        stats = tutor(p1_hand, p1_deck, p1_grave, p1untapped_mana, p1_life, mana)
+                        if stats is not None:
+                            if stats[0] != p1_life:
+                                p1_life = stats[0]
+                            if stats[1] != p1untapped_mana:
+                                p1untapped_mana = stats[1]
+                    if 9 in p1_hand:
+                        stats = life_gain(p1_hand, p1_grave, p1untapped_mana, p1_life, mana)
+                        if stats is not None:
+                            if stats[1] != p1_life:
+                                p1_life = stats[0]
+                            if stats[1] != p1untapped_mana:
+                                p1untapped_mana = stats[1]
+
             p1_turns += 1
             hand_check(p1_hand, p1_grave)
 

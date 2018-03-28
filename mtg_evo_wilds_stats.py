@@ -136,10 +136,10 @@ def check_field(hand, field, evo, mana):
 def check_creatures(battlefield):
     damage = 0
     small = battlefield.count(8)
-    big = battlefield.count(88)
+    big = battlefield.count(77)
     if 8 in battlefield:
         damage += small
-    elif 88 in battlefield:
+    elif 77 in battlefield:
         big *= 5
         damage += big
     return damage
@@ -175,17 +175,18 @@ def check_snap_shot(x, field):
         return 1
 
 
-def take_turn(deck, hand, graveyard, untapped_mana, opp_field, opp_graveyard, player, life, mana):
-    removal(hand, opp_field, graveyard, opp_graveyard, untapped_mana, mana, player)
-    if len(hand) < 6:
+def take_turn(deck, hand, graveyard, untapped_mana, opp_field, opp_graveyard, player, life, opp_life, mana):
+    if 13 in hand:
+        direct_damage(hand, graveyard, untapped_mana, opp_life, mana)
+    if 18 in hand and 8 in opp_field or 77 in opp_field:
+        return removal(hand, opp_field, graveyard, opp_graveyard, untapped_mana, mana, player)
+    if len(hand) < 7:
         if 17 in hand:
             return draw_card(deck, hand, graveyard, mana, untapped_mana)
-    if life >= 3 and 66 in hand:
-        return tutor(hand, deck, graveyard, untapped_mana, mana)
-    if 13 in hand:
-        return direct_damage(hand, graveyard, untapped_mana, mana)
+    if life >= 3 and 66 in hand and len(hand) < 6:
+        return tutor(hand, deck, graveyard, untapped_mana, life, mana)
     if 9 in hand:
-        return life_gain(hand, graveyard, untapped_mana, mana)
+        return life_gain(hand, graveyard, untapped_mana, life, mana)
     else:
         return
 
