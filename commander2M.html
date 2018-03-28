@@ -1,0 +1,71 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Commander 2 Mana - Win Stats</title>
+        
+<link rel="stylesheet" href="https://cdn.pydata.org/bokeh/release/bokeh-0.12.13.min.css" type="text/css" />
+        
+<script type="text/javascript" src="https://cdn.pydata.org/bokeh/release/bokeh-0.12.13.min.js"></script>
+<script type="text/javascript">
+    Bokeh.set_log_level("info");
+</script>
+        <style>
+          html {
+            width: 100%;
+            height: 100%;
+          }
+          body {
+            width: 90%;
+            height: 100%;
+            margin: auto;
+          }
+        </style>
+    </head>
+    <body>
+        
+        <div class="bk-root">
+            <div class="bk-plotdiv" id="da9aedf0-a474-4811-a184-68b618faf104"></div>
+        </div>
+        
+        <script type="application/json" id="c719043a-68eb-4ae0-ae1e-6cc94be26b92">
+          {"ad1acf46-0767-4310-be11-d06db3734e8b":{"roots":{"references":[{"attributes":{"plot":{"id":"6fc0ba38-a9b2-4106-8798-47db8e9e62e9","subtype":"Figure","type":"Plot"},"ticker":{"id":"5b030097-7bd2-44ac-a51a-8c1e7e7ec238","type":"BasicTicker"}},"id":"111e0666-5e43-44cb-90d4-1fa659444fe9","type":"Grid"},{"attributes":{"callback":null,"end":1.25,"start":-1.25},"id":"f5262f3d-1036-4122-9d35-9869f0b31028","type":"Range1d"},{"attributes":{"callback":null,"column_names":["starts","ends","color","name","amount"],"data":{"amount":[["60%"],["40%"]],"color":["red","blue"],"ends":[3.7699111843077517,6.283185307179586],"name":["Player Two Non-Evo","Player One Evo"],"starts":[0.0,3.7699111843077517]}},"id":"71b53ce1-7450-41bf-923b-7c73f812df26","type":"ColumnDataSource"},{"attributes":{"plot":null,"text":"Commander Win Percentage","text_font_size":{"value":"24px"}},"id":"a5b9f416-e6f9-4157-856c-d29c11428c0b","type":"Title"},{"attributes":{},"id":"5b030097-7bd2-44ac-a51a-8c1e7e7ec238","type":"BasicTicker"},{"attributes":{"active_drag":"auto","active_inspect":"auto","active_scroll":"auto","active_tap":"auto","tools":[{"id":"20e307e9-4e85-4027-891d-9df916ba685f","type":"PanTool"},{"id":"63da1515-a307-4df0-8894-ecfa9e7502f8","type":"WheelZoomTool"},{"id":"63513b30-597e-4997-a356-eaf11a454a29","type":"BoxZoomTool"},{"id":"6cc1d55b-1bbd-4091-ba0d-36ef13a23584","type":"ResetTool"},{"id":"5ea88ac6-e65b-436d-9e19-f2f0cf5a5a1a","type":"HoverTool"},{"id":"25064e57-3bab-496e-820d-d7ca29a27462","type":"SaveTool"}]},"id":"574235af-9340-417f-8e77-ac41d18924cd","type":"Toolbar"},{"attributes":{"renderers":[{"id":"111e0666-5e43-44cb-90d4-1fa659444fe9","type":"Grid"},{"id":"6d188a0f-94ed-4513-bb01-a6d39bd46ab4","type":"Grid"},{"id":"4fe8652b-2c23-4049-b494-13e20e0b2851","type":"BoxAnnotation"},{"id":"9f7fc81e-0ea5-4c52-a342-7f41f5c5008e","type":"Legend"},{"id":"58549b4a-32b7-45ea-b0fb-0441aba9e21d","type":"GlyphRenderer"}],"title":{"id":"a5b9f416-e6f9-4157-856c-d29c11428c0b","type":"Title"},"toolbar":{"id":"574235af-9340-417f-8e77-ac41d18924cd","type":"Toolbar"},"x_range":{"id":"2d0d1650-c49c-4c6c-a39b-c358e63deb9a","type":"Range1d"},"x_scale":{"id":"3aa77e5f-8457-47dc-9ad6-8ab8a68d6332","type":"LinearScale"},"y_range":{"id":"f5262f3d-1036-4122-9d35-9869f0b31028","type":"Range1d"},"y_scale":{"id":"e9c2fdb8-2e43-4ac7-b6fd-cc5fedc6065c","type":"LinearScale"}},"id":"6fc0ba38-a9b2-4106-8798-47db8e9e62e9","subtype":"Figure","type":"Plot"},{"attributes":{"data_source":{"id":"71b53ce1-7450-41bf-923b-7c73f812df26","type":"ColumnDataSource"},"glyph":{"id":"82660a23-44b4-49e2-955c-50fc6915fd8f","type":"Wedge"},"hover_glyph":null,"muted_glyph":null,"nonselection_glyph":{"id":"3816ee6b-0c88-41fd-a3d5-063d093a953e","type":"Wedge"},"selection_glyph":null,"view":{"id":"3e60dfe1-1283-42d8-bb17-09f5d1845d87","type":"CDSView"}},"id":"58549b4a-32b7-45ea-b0fb-0441aba9e21d","type":"GlyphRenderer"},{"attributes":{"items":[{"id":"dc5d5bb8-73e7-472e-a197-dcc575fc44c4","type":"LegendItem"}],"plot":{"id":"6fc0ba38-a9b2-4106-8798-47db8e9e62e9","subtype":"Figure","type":"Plot"}},"id":"9f7fc81e-0ea5-4c52-a342-7f41f5c5008e","type":"Legend"},{"attributes":{},"id":"3aa77e5f-8457-47dc-9ad6-8ab8a68d6332","type":"LinearScale"},{"attributes":{},"id":"e9c2fdb8-2e43-4ac7-b6fd-cc5fedc6065c","type":"LinearScale"},{"attributes":{"dimension":1,"plot":{"id":"6fc0ba38-a9b2-4106-8798-47db8e9e62e9","subtype":"Figure","type":"Plot"},"ticker":{"id":"148bfa7f-f2aa-4e6e-8a23-1141fab1f3c2","type":"BasicTicker"}},"id":"6d188a0f-94ed-4513-bb01-a6d39bd46ab4","type":"Grid"},{"attributes":{},"id":"20e307e9-4e85-4027-891d-9df916ba685f","type":"PanTool"},{"attributes":{},"id":"148bfa7f-f2aa-4e6e-8a23-1141fab1f3c2","type":"BasicTicker"},{"attributes":{"callback":null,"end":1.25,"start":-1.25},"id":"2d0d1650-c49c-4c6c-a39b-c358e63deb9a","type":"Range1d"},{"attributes":{},"id":"63da1515-a307-4df0-8894-ecfa9e7502f8","type":"WheelZoomTool"},{"attributes":{"overlay":{"id":"4fe8652b-2c23-4049-b494-13e20e0b2851","type":"BoxAnnotation"}},"id":"63513b30-597e-4997-a356-eaf11a454a29","type":"BoxZoomTool"},{"attributes":{},"id":"6cc1d55b-1bbd-4091-ba0d-36ef13a23584","type":"ResetTool"},{"attributes":{"callback":null,"tooltips":[["Name","@name"],["Percentage Won","@amount"]]},"id":"5ea88ac6-e65b-436d-9e19-f2f0cf5a5a1a","type":"HoverTool"},{"attributes":{},"id":"25064e57-3bab-496e-820d-d7ca29a27462","type":"SaveTool"},{"attributes":{"source":{"id":"71b53ce1-7450-41bf-923b-7c73f812df26","type":"ColumnDataSource"}},"id":"3e60dfe1-1283-42d8-bb17-09f5d1845d87","type":"CDSView"},{"attributes":{"bottom_units":"screen","fill_alpha":{"value":0.5},"fill_color":{"value":"lightgrey"},"left_units":"screen","level":"overlay","line_alpha":{"value":1.0},"line_color":{"value":"black"},"line_dash":[4,4],"line_width":{"value":2},"plot":null,"render_mode":"css","right_units":"screen","top_units":"screen"},"id":"4fe8652b-2c23-4049-b494-13e20e0b2851","type":"BoxAnnotation"},{"attributes":{"label":{"field":"name"},"renderers":[{"id":"58549b4a-32b7-45ea-b0fb-0441aba9e21d","type":"GlyphRenderer"}]},"id":"dc5d5bb8-73e7-472e-a197-dcc575fc44c4","type":"LegendItem"},{"attributes":{"end_angle":{"field":"ends","units":"rad"},"fill_color":{"field":"color"},"line_color":{"field":"color"},"radius":{"units":"data","value":1},"start_angle":{"field":"starts","units":"rad"},"x":{"value":0},"y":{"value":0}},"id":"82660a23-44b4-49e2-955c-50fc6915fd8f","type":"Wedge"},{"attributes":{"end_angle":{"field":"ends","units":"rad"},"fill_alpha":{"value":0.1},"fill_color":{"value":"#1f77b4"},"line_alpha":{"value":0.1},"line_color":{"value":"#1f77b4"},"radius":{"units":"data","value":1},"start_angle":{"field":"starts","units":"rad"},"x":{"value":0},"y":{"value":0}},"id":"3816ee6b-0c88-41fd-a3d5-063d093a953e","type":"Wedge"}],"root_ids":["6fc0ba38-a9b2-4106-8798-47db8e9e62e9"]},"title":"Bokeh Application","version":"0.12.13"}}
+        </script>
+        <script type="text/javascript">
+          (function() {
+            var fn = function() {
+              Bokeh.safely(function() {
+                (function(root) {
+                  function embed_document(root) {
+                    
+                  var docs_json = document.getElementById('c719043a-68eb-4ae0-ae1e-6cc94be26b92').textContent;
+                  var render_items = [{"docid":"ad1acf46-0767-4310-be11-d06db3734e8b","elementid":"da9aedf0-a474-4811-a184-68b618faf104","modelid":"6fc0ba38-a9b2-4106-8798-47db8e9e62e9"}];
+                  root.Bokeh.embed.embed_items(docs_json, render_items);
+                
+                  }
+                  if (root.Bokeh !== undefined) {
+                    embed_document(root);
+                  } else {
+                    var attempts = 0;
+                    var timer = setInterval(function(root) {
+                      if (root.Bokeh !== undefined) {
+                        embed_document(root);
+                        clearInterval(timer);
+                      }
+                      attempts++;
+                      if (attempts > 100) {
+                        console.log("Bokeh: ERROR: Unable to run BokehJS code because BokehJS library is missing")
+                        clearInterval(timer);
+                      }
+                    }, 10, root)
+                  }
+                })(window);
+              });
+            };
+            if (document.readyState != "loading") fn();
+            else document.addEventListener("DOMContentLoaded", fn);
+          })();
+        </script>
+    </body>
+</html>
