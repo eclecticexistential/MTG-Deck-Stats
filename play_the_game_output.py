@@ -9,8 +9,12 @@ def play_the_game(player_one, player_two, mana, goes_first, game_num):
     p2_turns = 0
     p1_ss = []
     p2_ss = []
-    p1_life = 20
-    p2_life = 20
+    if len(p1_deck) < 93:
+        p1_life = 20
+        p2_life = 20
+    else:
+        p1_life = 40
+        p2_life = 40
     ticker = 0
     method = ""
 # taking turns... goes_first determines who plays first
@@ -497,56 +501,55 @@ def status():
 
 
 def out_of_all_games(cc, mana, num_lands, removal, life_gain, tutor, draw_cards, combat_tricks, lil, bombs, evo):
-    evo_wilds_wins = 0
-    non_evo_wins = 0
-    ties = 0
-    games = 100
+    # evo_wilds_wins = 0
+    # non_evo_wins = 0
+    games = 100000
     while games >= 1:
         goes_first = status()
         if goes_first == 0:
             player_one = establish_field(cc, mana, games, goes_first, "P1", num_lands,
                                          removal, life_gain, tutor, draw_cards, combat_tricks, lil, bombs, evo)
             if player_one is False:
-                non_evo_wins += 1
+                # non_evo_wins += 1
                 games -= 1
             elif player_one:
                 player_two = establish_field(cc, mana, games, goes_first, "P2", num_lands,
                                              removal, life_gain, tutor, draw_cards, combat_tricks, lil, bombs,)
                 if player_two is False:
-                    evo_wilds_wins += 1
+                    # evo_wilds_wins += 1
                     games -= 1
             if player_one and player_two:
                 winner = play_the_game(player_one, player_two, mana, goes_first, games)
                 # appends num of draws into win condition if player won
                 if winner[0] == "P1":
-                    evo_wilds_wins += 1
+                    # evo_wilds_wins += 1
                     # print("Evo wins {}".format(games))
                     games -= 1
                 elif winner[0] == "P2":
-                    non_evo_wins += 1
+                    # non_evo_wins += 1
                     # print("Non-Evo wins {}".format(games))
                     games -= 1
         if goes_first == 1:
             player_two = establish_field(cc, mana, games, goes_first, "P2", num_lands, removal,
                                          life_gain, tutor, draw_cards, combat_tricks, lil, bombs)
             if player_two is False:
-                evo_wilds_wins += 1
+                # evo_wilds_wins += 1
                 games -= 1
             elif player_two:
                 player_one = establish_field(cc, mana, games, goes_first, "P1", num_lands, removal,
                                              life_gain, tutor, draw_cards, combat_tricks, lil, bombs, evo)
                 if player_one is False:
-                    non_evo_wins += 1
+                    # non_evo_wins += 1
                     games -= 1
             if player_two and player_one:
                 winner = play_the_game(player_one, player_two, mana, goes_first, games)
                 # appends num of draws into win condition if player won
                 if winner[0] == "P1" and winner[1] != 0:
-                    evo_wilds_wins += 1
+                    # evo_wilds_wins += 1
                     # print("Evo wins {}".format(games))
                     games -= 1
                 elif winner[0] == "P2" and winner[1] != 0:
-                    non_evo_wins += 1
+                    # non_evo_wins += 1
                     # print("Non-Evo wins {}".format(games))
                     games -= 1
 

@@ -71,19 +71,19 @@ def provide_winner_insight(data, ww=None, wwf=None, wm=None, wr=None, ds=None):
         if info[2] > 0:
             winning_round.append(info[2])
     if ww:
-        return p1_wins_out_of_games/100, p2_wins_out_of_games/100
+        return p1_wins_out_of_games/100000, p2_wins_out_of_games/100000
     if wwf:
-        return winner_went_first/100, winner_went_second/100
+        return winner_went_first/100000, winner_went_second/100000
     if wm:
-        return win_by_combat/100, win_by_no_mana/100, win_by_milled/100
+        return win_by_combat/100000, win_by_no_mana/100000, win_by_milled/100000
     if wr:
         return sum(winning_round)/len(winning_round)
     if ds:  # needs work
         return data.draw_steps()
 
 # cc, mana, num_lands, removal, life_gain, tutor, draw_cards, combat_tricks, lil, bombs, evos
-commander_3m = Game(100, 3, 36, 10, 2, 7, 10, 10, 10, 15, 4)
-print(provide_winner_insight(commander_3m, ww=True))
+# commander_3m = Game(100, 3, 36, 10, 2, 7, 10, 10, 10, 15, 4)
+# print(provide_winner_insight(commander_3m, ww=True))
 # print(provide_winner_insight(commander_3m, wwf=True))
 # print(provide_winner_insight(commander_3m, wm=True))
 # print(provide_winner_insight(commander_3m, wr=True))

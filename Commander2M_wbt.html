@@ -1,0 +1,71 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Commander 2 Mana - Win By Turn Stats</title>
+        
+<link rel="stylesheet" href="https://cdn.pydata.org/bokeh/release/bokeh-0.12.13.min.css" type="text/css" />
+        
+<script type="text/javascript" src="https://cdn.pydata.org/bokeh/release/bokeh-0.12.13.min.js"></script>
+<script type="text/javascript">
+    Bokeh.set_log_level("info");
+</script>
+        <style>
+          html {
+            width: 100%;
+            height: 100%;
+          }
+          body {
+            width: 90%;
+            height: 100%;
+            margin: auto;
+          }
+        </style>
+    </head>
+    <body>
+        
+        <div class="bk-root">
+            <div class="bk-plotdiv" id="31cbbf34-7a96-4837-963d-76ae2b568085"></div>
+        </div>
+        
+        <script type="application/json" id="1bf0fa9e-0f7d-4a78-89b6-12400ef87288">
+          {"ee2505cc-83aa-4ca1-b12b-0a97d40244d7":{"roots":{"references":[{"attributes":{"dimension":1,"plot":{"id":"17de06e1-bfb7-4783-8fd7-e90a9f5eb0c8","subtype":"Figure","type":"Plot"},"ticker":{"id":"4ca662b6-fdad-4746-9235-abd892b78bd4","type":"BasicTicker"}},"id":"87f36954-08d8-4904-9823-ff3a4307bf42","type":"Grid"},{"attributes":{},"id":"a72dc712-af9a-4542-9ade-1c1ba6cd5c77","type":"PanTool"},{"attributes":{},"id":"4ca662b6-fdad-4746-9235-abd892b78bd4","type":"BasicTicker"},{"attributes":{},"id":"b38d0b67-d391-485e-9e09-e5ce7fcbe29e","type":"WheelZoomTool"},{"attributes":{"overlay":{"id":"0f7c32c3-65a8-44bc-9470-bd7ac8b8fba1","type":"BoxAnnotation"}},"id":"ec09edb4-e6f8-41bd-a96f-eef96f5f965a","type":"BoxZoomTool"},{"attributes":{},"id":"01b5f5c7-df85-4405-bcb6-f940e00b4282","type":"ResetTool"},{"attributes":{"callback":null,"tooltips":[["Name","@name"],["Percentage Won","@amount"]]},"id":"4d334fef-394e-4243-a9bf-97d86800b963","type":"HoverTool"},{"attributes":{},"id":"d6257afd-885a-4cdb-98fb-d31c1b5244bb","type":"SaveTool"},{"attributes":{"bottom_units":"screen","fill_alpha":{"value":0.5},"fill_color":{"value":"lightgrey"},"left_units":"screen","level":"overlay","line_alpha":{"value":1.0},"line_color":{"value":"black"},"line_dash":[4,4],"line_width":{"value":2},"plot":null,"render_mode":"css","right_units":"screen","top_units":"screen"},"id":"0f7c32c3-65a8-44bc-9470-bd7ac8b8fba1","type":"BoxAnnotation"},{"attributes":{"items":[{"id":"a26c70c5-4396-4215-9757-0e833b9b6565","type":"LegendItem"}],"plot":{"id":"17de06e1-bfb7-4783-8fd7-e90a9f5eb0c8","subtype":"Figure","type":"Plot"}},"id":"af73ea9c-addf-4b13-9fd8-60fd89f4f319","type":"Legend"},{"attributes":{"callback":null,"end":1.25,"start":-1.25},"id":"9c2836f0-1b57-4b97-aed6-1c32dc70a3d1","type":"Range1d"},{"attributes":{"callback":null,"column_names":["starts","ends","color","name","amount"],"data":{"amount":[["52%"],["48%"]],"color":["red","blue"],"ends":[3.252553706114585,6.283185307179586],"name":["Wins Playing First","Wins Playing Second"],"starts":[0.0,3.252553706114585]}},"id":"bf2d748c-959a-49bb-ad14-c988ef4204e8","type":"ColumnDataSource"},{"attributes":{"data_source":{"id":"bf2d748c-959a-49bb-ad14-c988ef4204e8","type":"ColumnDataSource"},"glyph":{"id":"f861cbfc-bcf2-4afd-b894-6d782f037d5f","type":"Wedge"},"hover_glyph":null,"muted_glyph":null,"nonselection_glyph":{"id":"6f827c76-6d2d-48f4-885d-7ba942f266aa","type":"Wedge"},"selection_glyph":null,"view":{"id":"ccc6dff1-5d40-4168-bc09-7b350947f01a","type":"CDSView"}},"id":"3d649df2-9ee1-4318-b4c9-a9379abeb6cf","type":"GlyphRenderer"},{"attributes":{},"id":"331e24da-dc23-471f-87c8-051cb6e59785","type":"BasicTicker"},{"attributes":{"plot":{"id":"17de06e1-bfb7-4783-8fd7-e90a9f5eb0c8","subtype":"Figure","type":"Plot"},"ticker":{"id":"331e24da-dc23-471f-87c8-051cb6e59785","type":"BasicTicker"}},"id":"cef53910-8419-44d6-90cf-da1fdfe1d033","type":"Grid"},{"attributes":{"label":{"field":"name"},"renderers":[{"id":"3d649df2-9ee1-4318-b4c9-a9379abeb6cf","type":"GlyphRenderer"}]},"id":"a26c70c5-4396-4215-9757-0e833b9b6565","type":"LegendItem"},{"attributes":{"end_angle":{"field":"ends","units":"rad"},"fill_color":{"field":"color"},"line_color":{"field":"color"},"radius":{"units":"data","value":1},"start_angle":{"field":"starts","units":"rad"},"x":{"value":0},"y":{"value":0}},"id":"f861cbfc-bcf2-4afd-b894-6d782f037d5f","type":"Wedge"},{"attributes":{"plot":null,"text":"Commander 2M Win By Turn Percentage","text_font_size":{"value":"24px"}},"id":"e52aa0e1-d877-48ef-b052-672ae0f2939c","type":"Title"},{"attributes":{"active_drag":"auto","active_inspect":"auto","active_scroll":"auto","active_tap":"auto","tools":[{"id":"a72dc712-af9a-4542-9ade-1c1ba6cd5c77","type":"PanTool"},{"id":"b38d0b67-d391-485e-9e09-e5ce7fcbe29e","type":"WheelZoomTool"},{"id":"ec09edb4-e6f8-41bd-a96f-eef96f5f965a","type":"BoxZoomTool"},{"id":"01b5f5c7-df85-4405-bcb6-f940e00b4282","type":"ResetTool"},{"id":"4d334fef-394e-4243-a9bf-97d86800b963","type":"HoverTool"},{"id":"d6257afd-885a-4cdb-98fb-d31c1b5244bb","type":"SaveTool"}]},"id":"4f1727e7-c3d4-493d-b5e2-6cce46634418","type":"Toolbar"},{"attributes":{"renderers":[{"id":"cef53910-8419-44d6-90cf-da1fdfe1d033","type":"Grid"},{"id":"87f36954-08d8-4904-9823-ff3a4307bf42","type":"Grid"},{"id":"0f7c32c3-65a8-44bc-9470-bd7ac8b8fba1","type":"BoxAnnotation"},{"id":"af73ea9c-addf-4b13-9fd8-60fd89f4f319","type":"Legend"},{"id":"3d649df2-9ee1-4318-b4c9-a9379abeb6cf","type":"GlyphRenderer"}],"title":{"id":"e52aa0e1-d877-48ef-b052-672ae0f2939c","type":"Title"},"toolbar":{"id":"4f1727e7-c3d4-493d-b5e2-6cce46634418","type":"Toolbar"},"x_range":{"id":"ded9f62c-1b61-4f88-81ef-bb1b1faa0167","type":"Range1d"},"x_scale":{"id":"a8014ebc-d16a-4e12-a102-716abea06cf5","type":"LinearScale"},"y_range":{"id":"9c2836f0-1b57-4b97-aed6-1c32dc70a3d1","type":"Range1d"},"y_scale":{"id":"aba6eb19-c88c-4ec9-ac8e-c827e83e0400","type":"LinearScale"}},"id":"17de06e1-bfb7-4783-8fd7-e90a9f5eb0c8","subtype":"Figure","type":"Plot"},{"attributes":{"callback":null,"end":1.25,"start":-1.25},"id":"ded9f62c-1b61-4f88-81ef-bb1b1faa0167","type":"Range1d"},{"attributes":{},"id":"a8014ebc-d16a-4e12-a102-716abea06cf5","type":"LinearScale"},{"attributes":{"end_angle":{"field":"ends","units":"rad"},"fill_alpha":{"value":0.1},"fill_color":{"value":"#1f77b4"},"line_alpha":{"value":0.1},"line_color":{"value":"#1f77b4"},"radius":{"units":"data","value":1},"start_angle":{"field":"starts","units":"rad"},"x":{"value":0},"y":{"value":0}},"id":"6f827c76-6d2d-48f4-885d-7ba942f266aa","type":"Wedge"},{"attributes":{"source":{"id":"bf2d748c-959a-49bb-ad14-c988ef4204e8","type":"ColumnDataSource"}},"id":"ccc6dff1-5d40-4168-bc09-7b350947f01a","type":"CDSView"},{"attributes":{},"id":"aba6eb19-c88c-4ec9-ac8e-c827e83e0400","type":"LinearScale"}],"root_ids":["17de06e1-bfb7-4783-8fd7-e90a9f5eb0c8"]},"title":"Bokeh Application","version":"0.12.13"}}
+        </script>
+        <script type="text/javascript">
+          (function() {
+            var fn = function() {
+              Bokeh.safely(function() {
+                (function(root) {
+                  function embed_document(root) {
+                    
+                  var docs_json = document.getElementById('1bf0fa9e-0f7d-4a78-89b6-12400ef87288').textContent;
+                  var render_items = [{"docid":"ee2505cc-83aa-4ca1-b12b-0a97d40244d7","elementid":"31cbbf34-7a96-4837-963d-76ae2b568085","modelid":"17de06e1-bfb7-4783-8fd7-e90a9f5eb0c8"}];
+                  root.Bokeh.embed.embed_items(docs_json, render_items);
+                
+                  }
+                  if (root.Bokeh !== undefined) {
+                    embed_document(root);
+                  } else {
+                    var attempts = 0;
+                    var timer = setInterval(function(root) {
+                      if (root.Bokeh !== undefined) {
+                        embed_document(root);
+                        clearInterval(timer);
+                      }
+                      attempts++;
+                      if (attempts > 100) {
+                        console.log("Bokeh: ERROR: Unable to run BokehJS code because BokehJS library is missing")
+                        clearInterval(timer);
+                      }
+                    }, 10, root)
+                  }
+                })(window);
+              });
+            };
+            if (document.readyState != "loading") fn();
+            else document.addEventListener("DOMContentLoaded", fn);
+          })();
+        </script>
+    </body>
+</html>
