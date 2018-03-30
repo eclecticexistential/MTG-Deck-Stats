@@ -40,7 +40,7 @@ class Game:
             yield data
 
 
-def provide_winner_insight(data, ww=None, wwf=None, wm=None, wr=None, ds=None):
+def provide_winner_insight(data):
     p1_wins_out_of_games = 0
     p2_wins_out_of_games = 0
     winner_went_first = 0
@@ -70,16 +70,15 @@ def provide_winner_insight(data, ww=None, wwf=None, wm=None, wr=None, ds=None):
             win_by_milled += 1
         if info[2] > 0:
             winning_round.append(info[2])
-    if ww:
-        return p1_wins_out_of_games/100000, p2_wins_out_of_games/100000
-    if wwf:
-        return winner_went_first/100000, winner_went_second/100000
-    if wm:
-        return win_by_combat/100000, win_by_no_mana/100000, win_by_milled/100000
-    if wr:
-        return sum(winning_round)/len(winning_round)
-    if ds:  # needs work
-        return data.draw_steps()
+    p1_wins = p1_wins_out_of_games/100000
+    p2_wins = p2_wins_out_of_games/100000
+    went_first = winner_went_first/100000
+    went_second = winner_went_second/100000
+    combat_damage_win = win_by_combat/100000
+    no_mana = win_by_no_mana/100000
+    milled = win_by_milled/100000
+    win_round = sum(winning_round)/len(winning_round)
+    return p1_wins, p2_wins, went_first, went_second, combat_damage_win, no_mana, milled, win_round
 
 # cc, mana, num_lands, removal, life_gain, tutor, draw_cards, combat_tricks, lil, bombs, evos
 # commander_3m = Game(100, 3, 36, 10, 2, 7, 10, 10, 10, 15, 4)
