@@ -1,0 +1,71 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Standard 2 Mana - Win By Turn Stats</title>
+        
+<link rel="stylesheet" href="https://cdn.pydata.org/bokeh/release/bokeh-0.12.13.min.css" type="text/css" />
+        
+<script type="text/javascript" src="https://cdn.pydata.org/bokeh/release/bokeh-0.12.13.min.js"></script>
+<script type="text/javascript">
+    Bokeh.set_log_level("info");
+</script>
+        <style>
+          html {
+            width: 100%;
+            height: 100%;
+          }
+          body {
+            width: 90%;
+            height: 100%;
+            margin: auto;
+          }
+        </style>
+    </head>
+    <body>
+        
+        <div class="bk-root">
+            <div class="bk-plotdiv" id="6a386419-820b-471e-a8c8-183733560f1b"></div>
+        </div>
+        
+        <script type="application/json" id="4094c485-efe8-4461-8f49-8671414a7589">
+          {"f566e129-c352-4036-9263-ef6011fab7cc":{"roots":{"references":[{"attributes":{"callback":null,"end":1.25,"start":-1.25},"id":"0fd09994-60d4-4416-bec3-05a1e5dd5cac","type":"Range1d"},{"attributes":{"callback":null,"column_names":["starts","ends","color","name","amount"],"data":{"amount":[["52%"],["48%"]],"color":["red","blue"],"ends":[3.242689105182313,6.283185307179586],"name":["Wins Playing Second","Wins Playing First"],"starts":[0.0,3.242689105182313]}},"id":"d59fdcc3-dc1d-4394-a2e4-2520b646ff25","type":"ColumnDataSource"},{"attributes":{"plot":null,"text":"Standard 2M Win Percentage","text_font_size":{"value":"24px"}},"id":"167de1d6-b169-4c57-acf2-abbd63690838","type":"Title"},{"attributes":{"data_source":{"id":"bad40c2e-9ecb-4955-8acd-2dbdca858aec","type":"ColumnDataSource"},"glyph":{"id":"fdb4b09f-aa6f-4f5a-8a1e-cfbc2e8890a7","type":"Wedge"},"hover_glyph":null,"muted_glyph":null,"nonselection_glyph":{"id":"b850205f-26af-4360-957b-9b21152b780c","type":"Wedge"},"selection_glyph":null,"view":{"id":"2703e2d6-651c-435b-b2ae-21653d4d30fe","type":"CDSView"}},"id":"5308914f-5673-405c-a5e9-61a8f63c490c","type":"GlyphRenderer"},{"attributes":{"plot":{"id":"0c8205c8-c306-43a0-ac6e-09a6cb7ff016","subtype":"Figure","type":"Plot"},"ticker":{"id":"159bda71-2185-4930-9199-4777237436aa","type":"BasicTicker"},"visible":false},"id":"7c060406-c55c-4298-9c8c-ef02534392f1","type":"Grid"},{"attributes":{"callback":null,"end":1.25,"start":-1.25},"id":"8828ded4-e3e4-4add-978c-59825782388e","type":"Range1d"},{"attributes":{"callback":null,"column_names":["starts","ends","color","name","amount"],"data":{"amount":[["52%"],["48%"]],"color":["red","blue"],"ends":[3.2627324663122153,6.283185307179586],"name":["Player Two Non-Evo","Player One Evo"],"starts":[0.0,3.2627324663122153]}},"id":"bad40c2e-9ecb-4955-8acd-2dbdca858aec","type":"ColumnDataSource"},{"attributes":{},"id":"159bda71-2185-4930-9199-4777237436aa","type":"BasicTicker"},{"attributes":{"items":[{"id":"adb69469-bbb0-48ba-be78-a6eb830171d5","type":"LegendItem"}],"plot":{"id":"0c8205c8-c306-43a0-ac6e-09a6cb7ff016","subtype":"Figure","type":"Plot"}},"id":"1ed94e00-9d59-4043-b4e0-f9e852d29efa","type":"Legend"},{"attributes":{"active_drag":"auto","active_inspect":"auto","active_scroll":"auto","active_tap":"auto","tools":[{"id":"7a387e6a-f7c4-4d83-ad75-6913e944f7ec","type":"HoverTool"}]},"id":"4210a3b5-8e22-4ee9-ae66-e17bfbc311dd","type":"Toolbar"},{"attributes":{"callback":null,"end":1.25,"start":-1.25},"id":"24058a59-7a0a-440e-af3b-8034430348af","type":"Range1d"},{"attributes":{"renderers":[{"id":"7c060406-c55c-4298-9c8c-ef02534392f1","type":"Grid"},{"id":"66046456-e6e7-4a4c-8a3c-00d6913747bc","type":"Grid"},{"id":"1ed94e00-9d59-4043-b4e0-f9e852d29efa","type":"Legend"},{"id":"5308914f-5673-405c-a5e9-61a8f63c490c","type":"GlyphRenderer"}],"title":{"id":"167de1d6-b169-4c57-acf2-abbd63690838","type":"Title"},"toolbar":{"id":"4210a3b5-8e22-4ee9-ae66-e17bfbc311dd","type":"Toolbar"},"x_range":{"id":"8828ded4-e3e4-4add-978c-59825782388e","type":"Range1d"},"x_scale":{"id":"294b292c-ce31-4517-9122-6c7801197f46","type":"LinearScale"},"y_range":{"id":"0fd09994-60d4-4416-bec3-05a1e5dd5cac","type":"Range1d"},"y_scale":{"id":"b1b17978-20a6-42f6-8391-5df1d0664cfb","type":"LinearScale"}},"id":"0c8205c8-c306-43a0-ac6e-09a6cb7ff016","subtype":"Figure","type":"Plot"},{"attributes":{},"id":"294b292c-ce31-4517-9122-6c7801197f46","type":"LinearScale"},{"attributes":{},"id":"b1b17978-20a6-42f6-8391-5df1d0664cfb","type":"LinearScale"},{"attributes":{"dimension":1,"plot":{"id":"0c8205c8-c306-43a0-ac6e-09a6cb7ff016","subtype":"Figure","type":"Plot"},"ticker":{"id":"9a922a04-18cd-4cfe-9d8a-8be41b9dde42","type":"BasicTicker"},"visible":false},"id":"66046456-e6e7-4a4c-8a3c-00d6913747bc","type":"Grid"},{"attributes":{},"id":"aa0aa014-28a6-4a17-9803-9d0df0cc40d8","type":"LinearScale"},{"attributes":{"plot":{"id":"71b9faf3-eed1-4c2c-b9df-547f0a6ab9ac","subtype":"Figure","type":"Plot"},"ticker":{"id":"03cb61c3-c953-4b34-aeb5-72c4251a84dd","type":"BasicTicker"},"visible":false},"id":"16df533f-c3e9-4fee-a6ee-1679b6c17643","type":"Grid"},{"attributes":{},"id":"9a922a04-18cd-4cfe-9d8a-8be41b9dde42","type":"BasicTicker"},{"attributes":{"plot":null,"text":"Standard 2M Win By Turn Percentage","text_font_size":{"value":"24px"}},"id":"201899b5-36e8-4c32-894e-da3140f83017","type":"Title"},{"attributes":{"renderers":[{"id":"16df533f-c3e9-4fee-a6ee-1679b6c17643","type":"Grid"},{"id":"b1a520d4-9f98-4a02-b415-b6581315fec6","type":"Grid"},{"id":"c462a623-59e0-44e7-8d6b-d44bf31f261f","type":"Legend"},{"id":"dc012f00-0667-4ddf-aa17-894c2f290b9d","type":"GlyphRenderer"}],"title":{"id":"201899b5-36e8-4c32-894e-da3140f83017","type":"Title"},"toolbar":{"id":"57d5ad57-4c90-4ccf-a43b-8b09807b6890","type":"Toolbar"},"x_range":{"id":"24058a59-7a0a-440e-af3b-8034430348af","type":"Range1d"},"x_scale":{"id":"aa0aa014-28a6-4a17-9803-9d0df0cc40d8","type":"LinearScale"},"y_range":{"id":"b1b8cc65-32ac-444b-9056-3c44299feb8b","type":"Range1d"},"y_scale":{"id":"ace38903-8963-4203-8ff0-389b4ea9ed74","type":"LinearScale"}},"id":"71b9faf3-eed1-4c2c-b9df-547f0a6ab9ac","subtype":"Figure","type":"Plot"},{"attributes":{"callback":null,"tooltips":[["Name","@name"],["Percentage Won","@amount"]]},"id":"7a387e6a-f7c4-4d83-ad75-6913e944f7ec","type":"HoverTool"},{"attributes":{"source":{"id":"d59fdcc3-dc1d-4394-a2e4-2520b646ff25","type":"ColumnDataSource"}},"id":"12733087-2c37-4fae-8fb5-cfe2ac48ddcd","type":"CDSView"},{"attributes":{"dimension":1,"plot":{"id":"71b9faf3-eed1-4c2c-b9df-547f0a6ab9ac","subtype":"Figure","type":"Plot"},"ticker":{"id":"09bad3df-bb03-4e01-8aad-a40fe77e3cf6","type":"BasicTicker"},"visible":false},"id":"b1a520d4-9f98-4a02-b415-b6581315fec6","type":"Grid"},{"attributes":{},"id":"03cb61c3-c953-4b34-aeb5-72c4251a84dd","type":"BasicTicker"},{"attributes":{"active_drag":"auto","active_inspect":"auto","active_scroll":"auto","active_tap":"auto","tools":[{"id":"57bf6eaa-24a2-467e-9a3e-024468a349e5","type":"HoverTool"}]},"id":"57d5ad57-4c90-4ccf-a43b-8b09807b6890","type":"Toolbar"},{"attributes":{"source":{"id":"bad40c2e-9ecb-4955-8acd-2dbdca858aec","type":"ColumnDataSource"}},"id":"2703e2d6-651c-435b-b2ae-21653d4d30fe","type":"CDSView"},{"attributes":{"callback":null,"end":1.25,"start":-1.25},"id":"b1b8cc65-32ac-444b-9056-3c44299feb8b","type":"Range1d"},{"attributes":{},"id":"ace38903-8963-4203-8ff0-389b4ea9ed74","type":"LinearScale"},{"attributes":{"label":{"field":"name"},"renderers":[{"id":"5308914f-5673-405c-a5e9-61a8f63c490c","type":"GlyphRenderer"}]},"id":"adb69469-bbb0-48ba-be78-a6eb830171d5","type":"LegendItem"},{"attributes":{"end_angle":{"field":"ends","units":"rad"},"fill_color":{"field":"color"},"line_color":{"field":"color"},"radius":{"units":"data","value":1},"start_angle":{"field":"starts","units":"rad"},"x":{"value":0},"y":{"value":0}},"id":"fdb4b09f-aa6f-4f5a-8a1e-cfbc2e8890a7","type":"Wedge"},{"attributes":{"data_source":{"id":"d59fdcc3-dc1d-4394-a2e4-2520b646ff25","type":"ColumnDataSource"},"glyph":{"id":"db4cce3d-bd92-425f-9c44-6468454c6c21","type":"Wedge"},"hover_glyph":null,"muted_glyph":null,"nonselection_glyph":{"id":"a20467c2-42d2-44d3-b3cb-ea088daa4763","type":"Wedge"},"selection_glyph":null,"view":{"id":"12733087-2c37-4fae-8fb5-cfe2ac48ddcd","type":"CDSView"}},"id":"dc012f00-0667-4ddf-aa17-894c2f290b9d","type":"GlyphRenderer"},{"attributes":{"label":{"field":"name"},"renderers":[{"id":"dc012f00-0667-4ddf-aa17-894c2f290b9d","type":"GlyphRenderer"}]},"id":"7d076cc3-2255-4353-b470-89d23746e88c","type":"LegendItem"},{"attributes":{"callback":null,"tooltips":[["Name","@name"],["Percentage Won","@amount"]]},"id":"57bf6eaa-24a2-467e-9a3e-024468a349e5","type":"HoverTool"},{"attributes":{"end_angle":{"field":"ends","units":"rad"},"fill_color":{"field":"color"},"line_color":{"field":"color"},"radius":{"units":"data","value":1},"start_angle":{"field":"starts","units":"rad"},"x":{"value":0},"y":{"value":0}},"id":"db4cce3d-bd92-425f-9c44-6468454c6c21","type":"Wedge"},{"attributes":{},"id":"09bad3df-bb03-4e01-8aad-a40fe77e3cf6","type":"BasicTicker"},{"attributes":{"end_angle":{"field":"ends","units":"rad"},"fill_alpha":{"value":0.1},"fill_color":{"value":"#1f77b4"},"line_alpha":{"value":0.1},"line_color":{"value":"#1f77b4"},"radius":{"units":"data","value":1},"start_angle":{"field":"starts","units":"rad"},"x":{"value":0},"y":{"value":0}},"id":"a20467c2-42d2-44d3-b3cb-ea088daa4763","type":"Wedge"},{"attributes":{"end_angle":{"field":"ends","units":"rad"},"fill_alpha":{"value":0.1},"fill_color":{"value":"#1f77b4"},"line_alpha":{"value":0.1},"line_color":{"value":"#1f77b4"},"radius":{"units":"data","value":1},"start_angle":{"field":"starts","units":"rad"},"x":{"value":0},"y":{"value":0}},"id":"b850205f-26af-4360-957b-9b21152b780c","type":"Wedge"},{"attributes":{"items":[{"id":"7d076cc3-2255-4353-b470-89d23746e88c","type":"LegendItem"}],"plot":{"id":"71b9faf3-eed1-4c2c-b9df-547f0a6ab9ac","subtype":"Figure","type":"Plot"}},"id":"c462a623-59e0-44e7-8d6b-d44bf31f261f","type":"Legend"}],"root_ids":["0c8205c8-c306-43a0-ac6e-09a6cb7ff016","71b9faf3-eed1-4c2c-b9df-547f0a6ab9ac"]},"title":"Bokeh Application","version":"0.12.13"}}
+        </script>
+        <script type="text/javascript">
+          (function() {
+            var fn = function() {
+              Bokeh.safely(function() {
+                (function(root) {
+                  function embed_document(root) {
+                    
+                  var docs_json = document.getElementById('4094c485-efe8-4461-8f49-8671414a7589').textContent;
+                  var render_items = [{"docid":"f566e129-c352-4036-9263-ef6011fab7cc","elementid":"6a386419-820b-471e-a8c8-183733560f1b","modelid":"71b9faf3-eed1-4c2c-b9df-547f0a6ab9ac"}];
+                  root.Bokeh.embed.embed_items(docs_json, render_items);
+                
+                  }
+                  if (root.Bokeh !== undefined) {
+                    embed_document(root);
+                  } else {
+                    var attempts = 0;
+                    var timer = setInterval(function(root) {
+                      if (root.Bokeh !== undefined) {
+                        embed_document(root);
+                        clearInterval(timer);
+                      }
+                      attempts++;
+                      if (attempts > 100) {
+                        console.log("Bokeh: ERROR: Unable to run BokehJS code because BokehJS library is missing")
+                        clearInterval(timer);
+                      }
+                    }, 10, root)
+                  }
+                })(window);
+              });
+            };
+            if (document.readyState != "loading") fn();
+            else document.addEventListener("DOMContentLoaded", fn);
+          })();
+        </script>
+    </body>
+</html>

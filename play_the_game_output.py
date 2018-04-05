@@ -16,7 +16,10 @@ def play_the_game(player_one, player_two, mana, goes_first, game_num):
         p1_life = 40
         p2_life = 40
     ticker = 0
+    ticker2 = 0
     method = ""
+    no_draw = 0
+    no_draw2 = 0
 # taking turns... goes_first determines who plays first
     if goes_first == 0:
         while True:
@@ -24,19 +27,22 @@ def play_the_game(player_one, player_two, mana, goes_first, game_num):
             # print("Start of Round {}.".format(p1_turns + 1))
             # print("Player1 Field {} Hand {} Graveyard {} Life Total {}".format(p1_field, p1_hand, p1_grave, p1_life))
             # print("Player2 Field {} Hand {} Graveyard {} Life Total {} ".format(p2_field, p2_hand, p2_grave, p2_life))
-            try:
-                p1new_deck, p1new_hand = draw(p1_deck, p1_hand)
-            except TypeError:
-                stats = ["P2", p2_turns]
-                game_stats(p2_turns, "P2", mana, game_num, hand=None, method="Milled",
-                           winner=True, goes_first=goes_first)
-                return stats
-            if p1new_deck == []:
-                stats = ["P2", p2_turns]
-                game_stats(p2_turns, "P2", mana, game_num, hand=None, method="Milled",
-                           winner=True, goes_first=goes_first)
-                return stats
 
+            if no_draw != 0:
+                try:
+                    p1new_deck, p1new_hand = draw(p1_deck, p1_hand)
+                except TypeError:
+                    stats = ["P2", p2_turns]
+                    game_stats(p2_turns, "P2", mana, game_num, hand=None, method="Milled",
+                               winner=True, goes_first=goes_first)
+                    return stats
+                if p1new_deck == []:
+                    stats = ["P2", p2_turns]
+                    game_stats(p2_turns, "P2", mana, game_num, hand=None, method="Milled",
+                               winner=True, goes_first=goes_first)
+                    return stats
+            elif no_draw == 0:
+                p1new_deck, p1new_hand = p1_deck, p1_hand
             p1start_num_creatures = p1_field.count(8) + p1_field.count(77)
             p1_hand, p1_deck, p1_field, p1add_to, p1untapped_mana = main_phase(p1new_hand, p1new_deck,
                                                                                p1_field, p1_grave, mana)
@@ -142,6 +148,8 @@ def play_the_game(player_one, player_two, mana, goes_first, game_num):
                 ticker += 1
 
             ### player two's turn
+            if no_draw == 0:
+                no_draw += 1
             try:
                 p2new_deck, p2new_hand = draw(p2_deck, p2_hand)
             except TypeError:
@@ -261,18 +269,21 @@ def play_the_game(player_one, player_two, mana, goes_first, game_num):
             # print("Start of Round {}.".format(p2_turns +1))
             # print("Player2 Field {} Hand {} Graveyard {} Life Total {}".format(p2_field, p2_hand, p2_grave, p2_life))
             # print("Player1 Field {} Hand {} Graveyard {} Life Total {} ".format(p1_field, p1_hand, p1_grave, p1_life))
-            try:
-                p2new_deck, p2new_hand = draw(p2_deck, p2_hand)
-            except TypeError:
-                stats = ["P1", p1_turns]
-                game_stats(p1_turns, "P1", mana, game_num, hand=None, method="Milled",
-                           winner=True, goes_first=goes_first)
-                return stats
-            if p2new_deck == []:
-                stats = ["P1", p1_turns]
-                game_stats(p1_turns, "P1", mana, game_num, hand=None,
-                           method="Milled", winner=True, goes_first=goes_first)
-                return stats
+            if no_draw2 != 0:
+                try:
+                    p2new_deck, p2new_hand = draw(p2_deck, p2_hand)
+                except TypeError:
+                    stats = ["P1", p1_turns]
+                    game_stats(p1_turns, "P1", mana, game_num, hand=None, method="Milled",
+                               winner=True, goes_first=goes_first)
+                    return stats
+                if p2new_deck == []:
+                    stats = ["P1", p1_turns]
+                    game_stats(p1_turns, "P1", mana, game_num, hand=None,
+                               method="Milled", winner=True, goes_first=goes_first)
+                    return stats
+            elif no_draw2 == 0:
+                p2new_deck, p2new_hand = p2_deck, p2_hand
 
             p2start_num_creatures = p2_field.count(8) + p2_field.count(77)
             p2_hand, p2_deck, p2_field, p2add_to, p2untapped_mana = main_phase(p2new_hand, p2new_deck, p2_field, p2_grave, mana)
@@ -370,11 +381,13 @@ def play_the_game(player_one, player_two, mana, goes_first, game_num):
             p2_turns += 1
             hand_check(p2_hand, p2_grave)
 
-            if p1_life < 20 and ticker == 1:
+            if p1_life < 20 and ticker2 == 1:
                 game_stats(p2_turns, "P2", mana, game_num, hand=None, method=method, winner=None, goes_first=goes_first)
-                ticker += 1
+                ticker2 += 1
 
             # Player Evo's turn
+            if no_draw2 == 0:
+                no_draw2 += 1
             try:
                 p1new_deck, p1new_hand = draw(p1_deck, p1_hand)
             except TypeError:
@@ -486,9 +499,9 @@ def play_the_game(player_one, player_two, mana, goes_first, game_num):
             p1_turns += 1
             hand_check(p1_hand, p1_grave)
 
-            if p2_life < 20 and ticker == 1:
+            if p2_life < 20 and ticker2 == 0:
                 game_stats(p1_turns, "P1", mana, game_num, hand=None, method=method, winner=None, goes_first=goes_first)
-                ticker += 1
+                ticker2 += 1
 
 
 def status():
