@@ -2,23 +2,20 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6e4bc712-e27b-476f-b8d4-be3e0a9e6ad8" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Who_wins.db-journal" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DrawCon.db" afterPath="$PROJECT_DIR$/DrawCon.db" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/First_blood.db" afterPath="$PROJECT_DIR$/First_blood.db" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Mana_starved.db" afterPath="$PROJECT_DIR$/Mana_starved.db" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Open_hands.db" afterPath="$PROJECT_DIR$/Open_hands.db" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Who_wins.db" afterPath="$PROJECT_DIR$/Who_wins.db" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/2manaWBT.html" afterPath="$PROJECT_DIR$/2manaWBT.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/2manaWM.html" afterPath="$PROJECT_DIR$/2manaWM.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/3manaWBT.html" afterPath="$PROJECT_DIR$/3manaWBT.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/3manaWM.html" afterPath="$PROJECT_DIR$/3manaWM.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.ipynb_checkpoints/Commander 2M-checkpoint.ipynb" afterPath="$PROJECT_DIR$/.ipynb_checkpoints/Commander 2M-checkpoint.ipynb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Commander 2M.ipynb" afterPath="$PROJECT_DIR$/Commander 2M.ipynb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Commander 3 Mana.ipynb" afterPath="$PROJECT_DIR$/Commander 3 Mana.ipynb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Commander2MWBT.html" afterPath="$PROJECT_DIR$/Commander2MWBT.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Commander2MWM.html" afterPath="$PROJECT_DIR$/Commander2MWM.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Commander3MWBT.html" afterPath="$PROJECT_DIR$/Commander3MWBT.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Commander3MWM.html" afterPath="$PROJECT_DIR$/Commander3MWM.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Limited2MStats.ipynb" afterPath="$PROJECT_DIR$/Limited2MStats.ipynb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/play_the_game_output.py" afterPath="$PROJECT_DIR$/play_the_game_output.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/commander2mana.html" afterPath="$PROJECT_DIR$/commander2mana.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/commander3mana.html" afterPath="$PROJECT_DIR$/commander3mana.html" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -32,84 +29,7 @@
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="collect_stats.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/collect_stats.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3604">
-              <caret line="212" column="79" lean-forward="false" selection-start-line="212" selection-start-column="79" selection-end-line="212" selection-end-column="79" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="db_classes.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/db_classes.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1326">
-              <caret line="80" column="99" lean-forward="false" selection-start-line="80" selection-start-column="99" selection-end-line="80" selection-end-column="99" />
-              <folding>
-                <element signature="e#0#49#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="play_the_game_output.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/play_the_game_output.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="294">
-              <caret line="285" column="52" lean-forward="false" selection-start-line="285" selection-start-column="52" selection-end-line="285" selection-end-column="52" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="mtg_evo_wilds_stats.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/mtg_evo_wilds_stats.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="51">
-              <caret line="4" column="30" lean-forward="false" selection-start-line="4" selection-start-column="26" selection-end-line="4" selection-end-column="30" />
-              <folding>
-                <element signature="e#0#28#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="mtgClasses.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/mtgClasses.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="204">
-              <caret line="13" column="33" lean-forward="false" selection-start-line="13" selection-start-column="33" selection-end-line="13" selection-end-column="33" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="mtg_start_file.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/mtg_start_file.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1853">
-              <caret line="110" column="0" lean-forward="false" selection-start-line="110" selection-start-column="0" selection-end-line="110" selection-end-column="0" />
-              <folding>
-                <element signature="e#0#24#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="mtgSpells.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/mtgSpells.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -179,7 +99,7 @@
     <option name="height" value="784" />
   </component>
   <component name="ProjectView">
-    <navigator currentView="ProjectPane" proportions="" version="1">
+    <navigator proportions="" version="1">
       <flattenPackages />
       <showMembers />
       <showModules />
@@ -192,24 +112,7 @@
       <manualOrder />
       <foldersAlwaysOnTop value="true" />
     </navigator>
-    <panes>
-      <pane id="Scratches" />
-      <pane id="ProjectPane">
-        <subPane>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mtg" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mtg" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-        </subPane>
-      </pane>
-      <pane id="Scope" />
-    </panes>
+    <panes />
   </component>
   <component name="PropertiesComponent">
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../../PythonCodeLouisvilleProject/Python/output/us_tots_classes.py" />
@@ -829,6 +732,24 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/play_the_game_output.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="285" column="52" lean-forward="false" selection-start-line="285" selection-start-column="52" selection-end-line="285" selection-end-column="52" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mtg_evo_wilds_stats.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="4" column="30" lean-forward="false" selection-start-line="4" selection-start-column="26" selection-end-line="4" selection-end-column="30" />
+          <folding>
+            <element signature="e#0#28#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/mtgClasses.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="204">
@@ -837,19 +758,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/mtg_evo_wilds_stats.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="4" column="30" lean-forward="false" selection-start-line="4" selection-start-column="26" selection-end-line="4" selection-end-column="30" />
-          <folding>
-            <element signature="e#0#28#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/mtg_start_file.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1853">
+        <state relative-caret-position="617">
           <caret line="110" column="0" lean-forward="false" selection-start-line="110" selection-start-column="0" selection-end-line="110" selection-end-column="0" />
           <folding>
             <element signature="e#0#24#0" expanded="true" />
@@ -861,14 +772,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/play_the_game_output.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="294">
-          <caret line="285" column="52" lean-forward="false" selection-start-line="285" selection-start-column="52" selection-end-line="285" selection-end-column="52" />
           <folding />
         </state>
       </provider>
