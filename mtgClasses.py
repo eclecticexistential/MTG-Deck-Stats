@@ -21,8 +21,6 @@ class Mana:
             rando = random.randint(0, self.land_type-1)
             self.mana.append(m_types[rando])
 
-
-
     def __iter__(self):
         for lands in self.mana:
             yield lands
